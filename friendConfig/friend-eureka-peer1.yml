@@ -1,0 +1,21 @@
+server:
+  port: 8761
+  
+eureka:
+  instance:
+    hostname: peer1
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://friendeureka:gloryfriend@peer2:8762/eureka/
+      
+spring:
+  application:
+    name: friend-eureka-peer1
+  security:
+    filter:
+      order: 1
+    user:
+      name: friendeureka
+      password: gloryfriend
