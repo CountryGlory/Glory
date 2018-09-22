@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rong.friend.dao.SettingMapper" >
+  <resultMap id="BaseResultMap" type="com.rong.friend.model.Setting" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="mute" property="mute" jdbcType="INTEGER" />
+    <result column="shock" property="shock" jdbcType="INTEGER" />
+    <result column="createdt" property="createdt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, mute, shock, createdt
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from setting
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from setting
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rong.friend.model.Setting" >
+    insert into setting (id, userid, mute, 
+      shock, createdt)
+    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{mute,jdbcType=INTEGER}, 
+      #{shock,jdbcType=INTEGER}, #{createdt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rong.friend.model.Setting" >
+    insert into setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="mute != null" >
+        mute,
+      </if>
+      <if test="shock != null" >
+        shock,
+      </if>
+      <if test="createdt != null" >
+        createdt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="mute != null" >
+        #{mute,jdbcType=INTEGER},
+      </if>
+      <if test="shock != null" >
+        #{shock,jdbcType=INTEGER},
+      </if>
+      <if test="createdt != null" >
+        #{createdt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rong.friend.model.Setting" >
+    update setting
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="mute != null" >
+        mute = #{mute,jdbcType=INTEGER},
+      </if>
+      <if test="shock != null" >
+        shock = #{shock,jdbcType=INTEGER},
+      </if>
+      <if test="createdt != null" >
+        createdt = #{createdt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rong.friend.model.Setting" >
+    update setting
+    set userid = #{userid,jdbcType=VARCHAR},
+      mute = #{mute,jdbcType=INTEGER},
+      shock = #{shock,jdbcType=INTEGER},
+      createdt = #{createdt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

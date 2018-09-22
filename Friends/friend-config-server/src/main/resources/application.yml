@@ -1,0 +1,24 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: friend-config-server
+#  security:
+#    user:
+#      name: configserver
+#      password: gloryconfig
+#      roles: 
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/CountryGlory/Glory
+          search-paths: friendConfig
+          username: 
+          password: 
+      label: master
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka/ #http://friendeureka:gloryfriend@peer1:8761/eureka/ #,http://friendeureka:gloryfriend@peer2:8762/eureka/

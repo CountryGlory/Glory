@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rong.friend.dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.rong.friend.model.Comment" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="spaceId" property="spaceid" jdbcType="VARCHAR" />
+    <result column="commfouserId" property="commfouserid" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="commtouserId" property="commtouserid" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="createdt" property="createdt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, spaceId, commfouserId, content, commtouserId, status, createdt
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from comment
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rong.friend.model.Comment" >
+    insert into comment (id, spaceId, commfouserId, 
+      content, commtouserId, status, 
+      createdt)
+    values (#{id,jdbcType=VARCHAR}, #{spaceid,jdbcType=VARCHAR}, #{commfouserid,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{commtouserid,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createdt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rong.friend.model.Comment" >
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="spaceid != null" >
+        spaceId,
+      </if>
+      <if test="commfouserid != null" >
+        commfouserId,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="commtouserid != null" >
+        commtouserId,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdt != null" >
+        createdt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="spaceid != null" >
+        #{spaceid,jdbcType=VARCHAR},
+      </if>
+      <if test="commfouserid != null" >
+        #{commfouserid,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="commtouserid != null" >
+        #{commtouserid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdt != null" >
+        #{createdt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rong.friend.model.Comment" >
+    update comment
+    <set >
+      <if test="spaceid != null" >
+        spaceId = #{spaceid,jdbcType=VARCHAR},
+      </if>
+      <if test="commfouserid != null" >
+        commfouserId = #{commfouserid,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="commtouserid != null" >
+        commtouserId = #{commtouserid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdt != null" >
+        createdt = #{createdt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rong.friend.model.Comment" >
+    update comment
+    set spaceId = #{spaceid,jdbcType=VARCHAR},
+      commfouserId = #{commfouserid,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      commtouserId = #{commtouserid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      createdt = #{createdt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
