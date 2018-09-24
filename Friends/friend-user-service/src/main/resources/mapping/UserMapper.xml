@@ -159,9 +159,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.rong.friend.model.User">
     update user
     <set>
-      <if test="namenumber != null">
-        nameNumber = #{namenumber,jdbcType=VARCHAR},
-      </if>
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
@@ -199,7 +196,7 @@
         status = #{status,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where namenumber = #{namenumber,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.rong.friend.model.User">
     update user

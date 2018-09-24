@@ -5,11 +5,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import com.rong.friend.service.SessionIdService;
 
 /**
  * 过滤器
@@ -20,6 +22,10 @@ import com.netflix.zuul.exception.ZuulException;
 public class MyFilter extends ZuulFilter{
 
 	private static Logger log = LoggerFactory.getLogger(MyFilter.class);
+	
+	@Autowired
+	private SessionIdService sessionIdService;
+	
 	/**
 	 * 这里可以写逻辑判断是否要过滤，true为永远过滤
 	 */
@@ -43,12 +49,20 @@ public class MyFilter extends ZuulFilter{
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request=ctx.getRequest();
 		String sessionId=request.getParameter("sessionId");
+		String userCode=request.getParameter("userCode");
+		Integer sessionIdResult=sessionIdService.verificationSession(sessionId, userCode);
 		if(sessionId==null || sessionId.trim().equals("")) {
 			ctx.setSendZuulResponse(false);
 			ctx.setResponseStatusCode(401);
 			ctx.set("error.status_code",HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			ctx.set("error.exception",new RuntimeException("sessionId is null"));
 			log.error("sessionId is null");
+		}else if(sessionIdResult!=1) {
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			ctx.set("error.status_code",HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			ctx.set("error.exception",new RuntimeException("sessionId is error"));
+			log.error("sessionId is error");
 		}
 		
 		return null;

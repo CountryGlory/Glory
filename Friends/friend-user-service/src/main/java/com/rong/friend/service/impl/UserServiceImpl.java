@@ -49,18 +49,12 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public String zjlogin(String nameNumber,String sessionId) throws Exception {
-		User user=userMapper.selectBynameNumberLogin(nameNumber);
-		if(user==null || !SessionUtil.provingSession(user.getId(), sessionId)) {
-			return null;
-		}else {
-			user.setStatus(1);
-			userMapper.updateByPrimaryKeySelective(user);
-			SessionUtil.removeSessionId(sessionId);
-			String newSessionId=UUIDUtil.UUID64();
-			SessionUtil.setSessionId(newSessionId,user.getId());
-			return newSessionId;
-		}
+	public boolean zjlogin(String nameNumber) throws Exception {
+		User user=new User();
+		user.setStatus(1);
+		user.setNamenumber(nameNumber);
+		userMapper.updateByPrimaryKeySelective(user);
+		return true;
 	}
 	
 	@Override

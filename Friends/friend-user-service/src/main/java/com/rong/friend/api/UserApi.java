@@ -77,15 +77,14 @@ public class UserApi {
 	 */
 	@ApiOperation(value="自动登录")
 	@GetMapping("/zidonglogin")
-	public String zidongLogin(@ApiParam(value="账号",required=true) @RequestParam String userCode
-			,@ApiParam(value="SessionId验证用户唯一",required=true) @RequestParam String sessionId) {
+	public boolean zidongLogin(@ApiParam(value="账号",required=true) @RequestParam String userCode) {
 		try {
-			String newSessionId=userService.zjlogin(userCode, sessionId);
+			boolean result=userService.zjlogin(userCode);
 			logger.info("自动登录成功！");
-			return newSessionId;
+			return result;
 		} catch (Exception e) {
 			logger.error("自动登录失败:"+e.getMessage());
-			return null;
+			return false;
 		}
 	}
 	
@@ -98,8 +97,7 @@ public class UserApi {
 	 */
 	@ApiOperation(value="消息首页")
 	@GetMapping("/chatMain")
-	public Object chatMain(@ApiParam(value="账号",required=true) @RequestParam String userCode
-			,@ApiParam(value="SessionId验证用户唯一",required=true) @RequestParam String sessionId)throws Exception{
+	public Object chatMain(@ApiParam(value="账号",required=true) @RequestParam String userCode)throws Exception{
 		try {
 			
 		} catch (Exception e) {

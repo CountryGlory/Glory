@@ -25,7 +25,7 @@ public interface UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public String zjlogin(String nameNumber,String sessionId)throws Exception;
+	public boolean zjlogin(String nameNumber)throws Exception;
 	/**
 	 * 注册
 	 * @param user
