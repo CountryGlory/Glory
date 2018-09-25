@@ -10,15 +10,15 @@ spring:
   zipkin:
     base-url: http://localhost:9411
   #redis缓存配置
-  redis
+  redis:
     database: 0
     host: 120.79.238.208
     port: 6379
     password: glory1998
     timeout: 0
-    pool
-      max-active: 8
-      max-wait: -1
+    pool:
+      max-total: 8
+      max-wait-millis: -1 
       max-idle: 8
       min-idle: 0
   datasource:
@@ -49,6 +49,12 @@ spring:
       #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
+  #动态刷新配置文件
+  rabbitmq:
+    host: 120.79.238.208
+    password: guest
+    port: 5672
+    username: guest
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.rong.friend.model
