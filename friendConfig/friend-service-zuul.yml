@@ -1,7 +1,7 @@
 eureka:
   client:
     service-url:
-      defauleZone: http://friendeureka:gloryfriend@peer1:8761/eureka/,http://friendeureka:gloryfriend@peer2:8762/eureka/
+      defauleZone: http://peer1:8761/eureka/ #http://friendeureka:gloryfriend@peer1:8761/eureka/,http://friendeureka:gloryfriend@peer2:8762/eureka/
 server:
   port: 8781
 spring:
@@ -10,5 +10,5 @@ spring:
 zuul:
   routes:
     api-a:
-      path: /api-a/**
+      path: /api-user/**
       serviceId: friend-user-service

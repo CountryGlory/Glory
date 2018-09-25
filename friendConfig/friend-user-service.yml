@@ -9,6 +9,18 @@ spring:
     name: friend-user-service
   zipkin:
     base-url: http://localhost:9411
+  #redis缓存配置
+  redis
+    database: 0
+    host: 120.79.238.208
+    port: 6379
+    password: glory1998
+    timeout: 0
+    pool
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
   datasource:
     name: friend
     type: com.alibaba.druid.pool.DruidDataSource
@@ -18,7 +30,7 @@ spring:
       username: root
       password: Root!2018
       #监控统计拦击filters
-      driver-class-name: com.mysql.jdbc.Deiver
+      driver-class-name: com.mysql.jdbc.Driver
       filters: stat
       #配置初始化大小，最大/最小
       initial-size: 1
@@ -39,4 +51,4 @@ spring:
       max-pool-prepared-statement-per-connection-size: 20
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.rong.friend.entity
+  type-aliases-package: com.rong.friend.model
