@@ -1,7 +1,7 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+      defaultZone: http://peer1:8761/eureka/ #,http://peer2:8762/eureka/
 server:
   port: 8771
 spring:
@@ -17,10 +17,10 @@ spring:
     password: glory1998
     timeout: 0
     pool:
-      max-total: 8
+      max-total: 1000
       max-wait-millis: -1 
-      max-idle: 8
-      min-idle: 0
+      max-idle: 100
+      min-idle: 1
   datasource:
     name: friend
     type: com.alibaba.druid.pool.DruidDataSource
