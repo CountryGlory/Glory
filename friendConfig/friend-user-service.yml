@@ -27,9 +27,9 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     #使用druid数据源
     druid:
-      url: jdbc:mysql://116.85.23.71:3306/friend_db?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      url: jdbc:mysql://120.79.238.208:3306/friend_db?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
       username: root
-      password: Root!2018
+      password: Glory!1998
       #监控统计拦击filters
       driver-class-name: com.mysql.jdbc.Driver
       filters: stat
