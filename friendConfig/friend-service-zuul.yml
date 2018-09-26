@@ -12,6 +12,9 @@ zuul:
     api-a:
       path: /api-user/**
       serviceId: friend-user-service
+    api-b:
+      path: /api-chat/**
+      serviceId: friend-chat-service
 #feign
 #  hystrix
 #    enabled: true
