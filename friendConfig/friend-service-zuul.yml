@@ -13,7 +13,7 @@ spring:
     host: 120.79.238.208
     port: 6379
     password: glory1998
-    timeout: 5000
+    timeout: 10000
     lettuce:
       pool:
         max-wait: -1
@@ -21,6 +21,9 @@ spring:
         max-idle: 100
         min-idle: 10
 zuul:
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 60000
   routes:
     api-a:
       path: /api-user/**
