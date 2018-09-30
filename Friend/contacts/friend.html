@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/contacts.css" />
+		<script type="text/javascript" src="../js/mui.min.js" ></script>
+		<script type="text/javascript" src="../js/app.js" ></script>
+		<script type="text/javascript" src="../js/mui.previewimage.js" ></script>
+		<script type="text/javascript" src="../js/mui.zoom.js" ></script>
+		<style type="text/css">
+			.mui-plus .plus{
+				display: inline;
+			}
+			
+			.plus{
+				display: none;
+			}
+			
+			#topPopover {
+				position: fixed;
+				top: 16px;
+				right: 6px;
+			}
+			#topPopover .mui-popover-arrow {
+				left: auto;
+				right: 6px;
+			}
+			p {
+				text-indent: 22px;
+			}
+			span.mui-icon {
+				font-size: 14px;
+				color: #007aff;
+				margin-left: -15px;
+				padding-right: 10px;
+			}
+			.mui-popover {
+				height: 240px;
+				width: 200px;
+			}
+			.mui-content {
+				padding: 10px;
+			}
+			
+			
+			.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			p img {
+				max-width: 100%;
+				height: auto;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div id="backs">
+				<span class="mui-icon mui-icon-back"></span>
+			</div>
+			<h1 class="mui-title">详细信息</h1>
+			<div id="add">
+				<a id="menu" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right" href="#topPopover"></a>
+			</div>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<div id="contacts">
+						<img src="../images/head_portrait/timg.jpg" data-preview-src="" data-preview-group="1"/>
+					</div>
+					<p class="friendnickname"></p><br />
+					<p class="mui-table-view-cell">账号：yz268</p>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" >备注
+					<p id="myright"><input style="border:none; text-align:right;" value="小明"/></p>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">地區
+				<p id="myright">江西 南昌</p>
+				</li>
+				<li class="mui-table-view-cell">個人看看
+					<img id="dupian" src="../images/head_portrait/timg4.jpg" data-preview-src="" data-preview-group="0"/>
+					<img id="dupian" src="../images/head_portrait/timg5.jpg" data-preview-src="" data-preview-group="0"/>
+					<img id="dupian" src="../images/head_portrait/u=1208883679,2257781156&fm=27&gp=0.jpg" data-preview-src="" data-preview-group="0"/>
+				</li>
+				<li class="mui-table-view-cell">更多
+				</li>
+			</ul><br />
+			<div class="mui-table-view">
+				<button type="button" class="mui-btn mui-btn-success" id="diav">发消息</button>	
+			</div>
+			<div id="topPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" id="heimin"><a href="#">加入黑名单</a>
+						</li>
+						<li class="mui-table-view-cell" id="shanchu"><a href="#">删除</a>
+						</li>
+						<li class="mui-table-view-cell" id="xinpen"><a href="#">标为星标朋友</a>
+						</li>
+						<li class="mui-table-view-cell" id="ass"><a href="#">分组管理</a>
+						</li>
+						<li class="mui-table-view-cell"><a href="#">投诉</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		(function(){
+			mui.init();
+			mui.previewImage();
+				var frdName=app.getUrlParam('frdName');
+			document.getElementsByClassName('friendnickname')[0].innerText=frdName;
+				//返回
+				mui(".mui-bar-nav").on("tap",".mui-icon-back",function(){
+					mui.back();
+				});
+				//点击发消息跳聊天页面
+				mui(".mui-table-view").on("tap","#diav",function(){
+					var url=encodeURI('../chat/chat.html?friendName='+frdName);
+					app.redirect(encodeURI(url));
+				});
+				//点击分组管理跳转到分组管理页面
+				mui(".mui-table-view").on("tap","#ass",function(){
+					app.redirect("../contacts/group.html");
+				});
+				//点击删除
+				mui(".mui-table-view").on("tap","#shanchu",function(){
+					mui.confirm('确定要删除该好友吗？','提示',function(e){
+						var data=e.index;
+						if(data=1){	
+						}	
+					});
+				});
+				//点击加入黑名单
+				mui(".mui-table-view").on("tap","#heimin",function(){
+					mui.confirm('确定要将该好友加入黑名单吗？','提示',function(e){
+						var data=e.index;
+						if(data=1){	
+						}	
+					});
+				});
+				//点击设为星标朋友
+				mui(".mui-table-view").on("tap","#xinpen",function(){
+					mui.toast('已设为星标朋友！')
+				});
+			}(mui, document));	
+	</script>
+</html>

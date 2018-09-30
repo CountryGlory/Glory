@@ -1,0 +1,13 @@
+.mui-icon-plus:before {
+	padding: inherit;
+	font-size: x-large;
+}
+.mui-icon-minus:before {
+	padding: inherit;
+	font-size: x-large;
+}
+.mui-icon {
+	font-size: 15px;
+	color: #929292;
+	padding-right: 10px;
+}

@@ -1,0 +1,34 @@
+{
+	"main/main.html": {
+		"resources": [
+			"main/contacts.html",
+			"main/chatindex.html"
+		],
+		"refer": [
+			"main/contacts.html",
+			"main/chatindex.html"
+		]
+	},
+	"main/chatindex.html": {
+		"refer": [
+			"user/my.html",
+			"chat/chat.html"
+		]
+	},
+	"user/my.html": {
+		"refer": [
+			"user/login.html"
+		]
+	},
+	"user/login.html": {
+		"refer": [
+			"user/reg.html",
+			"main/main.html"
+		]
+	},
+	"user/reg.html": {
+		"refer": [
+			"user/login.html"
+		]
+	}
+}

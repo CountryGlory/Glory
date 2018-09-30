@@ -1,0 +1,44 @@
+#back{
+	float: left;
+}
+.mui-table-view-cell{
+	width: 100%;
+}
+/*点击变蓝色高亮*/
+.mui-table-view-cell.mui-active{
+	background-color: #EEEEEE;
+}
+.mui-content {
+				padding: 10px;
+			}
+#myhead{
+	width:60px;
+	height: 60px;
+	border-radius: 30px;
+	float: left;
+}
+#myhead img{
+	width: 100%;
+	height: 100%;
+	border-radius: 30px;
+}
+#mynickname{
+	height: 100%;
+	line-height: 60px;
+	margin-left: 20px;
+	float: left;
+	color: #000000;
+	font-family: "微软雅黑";
+	font-size: 16px;
+}
+.myleft{
+	float: left;
+	font-size: 16px;
+	color: #000000;
+}
+.myright{
+	float: right;
+}
+.mui-table-view{
+	margin-bottom: 10px;
+}

@@ -1,0 +1,145 @@
+html{
+	height: 100%;
+}
+body{
+	height: 100%;
+}
+.mui-center{
+	height: 100%;
+	position:relative;
+}
+/*中间聊天内容*/
+.mui-center>.center{
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	position: absolute;
+	bottom: 50px;
+	padding-top: 98px;
+}
+.center-ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.center-ul>li{
+	margin-top: 10px;
+	clear:both;
+	min-height: 50px;
+}
+.head{
+	width: 50px;
+	height: 50px;
+	margin-left: 10px;
+}
+.head img{
+	width: 45px;
+	height: 45px;
+	border-radius: 23px;
+}
+.content{
+	font-family: "微软雅黑";
+	padding: 10px;
+	border-radius: 5px;
+	margin: 5px 0 10px 10px;
+	font-size: 14px;
+	max-width: 60%;
+}
+.left .head{
+	float: left;
+}
+.left .content{
+	background-color: white;
+	float: left;
+	word-break:break-all;
+}
+.right .head{
+	float: right;
+	margin-right: 10px;
+}
+.right .content{
+	float: right;
+	padding: 5px;
+	word-break:break-all;
+	border: 8px solid cornflowerblue;
+}
+/*底部聊天框*/
+.mui-center>.bottom{
+	background-color: white;
+	height: 50px;
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+	padding:8px 5px 0 5px;
+}
+#back{
+	float: left;
+}
+#voice{
+	float: left;
+	height: 100%;
+	width: 24px;
+	padding-top: 2px;
+}
+#text{
+	
+}
+#text #txt{
+	height: 100%;
+	margin:0 78px 0 30px
+}
+#text #form_article{
+	height: 30px;
+	width: 100%;
+	padding: 4px;
+	margin: 0px;
+	overflow: hidden;
+	border: 1px solid #BBBBBB;
+	border-radius: 3px;
+}
+#expression img{
+	width: 20px;
+	height: 20px;
+}
+#expression{
+	float: right;
+	width: 24px;
+	height: 100%;
+	padding-top: 4px;
+	margin-right: 8px;
+}
+#add{
+	width: 24px;
+	float: right;
+	height: 100%;
+	padding-top: 2px;
+	margin-right: 10px;
+}
+#send{
+	background-color: #6495ED;
+	position: absolute;
+	right: 5px;
+	top: 10px;
+	width: 40px;
+	height: 24px;
+	text-align: center;
+	line-height: 12px;
+	padding: 0px;
+	color: white;
+	border: #6495ED;
+	visibility: hidden;
+}
+#additional{
+	padding: 10px;
+	visibility: hidden;
+	position: absolute;
+	bottom: 0px;
+}
+#additional img{
+	width: 50px;
+	height: 50px;
+	margin-right: 20px;
+}
+#page_emotion{
+	background-color: white;
+}

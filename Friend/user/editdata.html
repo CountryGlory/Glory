@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/style.css" />
+		<link href="../css/mui.picker.min.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/my.css" />
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/mui.previewimage.js"></script>
+		<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+		<script type="text/javascript" src="../js/app.js" ></script>
+		<style type="text/css">
+			.mui-content {
+				padding: 10px;
+			}
+			
+			#tox {
+				width: 70px;
+				height: 70px;
+				border-radius: 70px;
+				float: right;
+			}
+			
+			#tox img {
+				width: 100%;
+				height: 100%;
+				border-radius: 0px;
+			}
+			
+			#nickname {
+				line-height: 60px;
+				color: #000000;
+				font-family: "微软雅黑";
+				font-size: 16px;
+			}
+			
+			#menu {
+				line-height: 50px;
+			}
+			
+			body {
+				line-height: 22px;
+			}
+			#head_img_change{
+				position: absolute;
+				width: 100%;
+				height: 70px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div id="back"><span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></span></div>
+			<div id="menu">
+				<a class="mui-pull-right">保存</a>
+			</div>
+			<h1 class="mui-title">编辑资料</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<input style="opacity: 0;" type="file" accept="image/*" id="head_img_change">
+					<div id="tox">
+						<img id="head_image" src="../images/head_portrait/u=1097202646,3345048323&fm=27&gp=0.jpg" />
+					</div>
+					<p id="nickname">头像</p>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<p class="myleft">呢称</p>
+					<p class="myright "><input style="border:none; text-align:right; width: 100px;" value="苦逼程序猿" /></p>
+				</li>
+				<li class="mui-table-view-cell" id='showUserPicker'>
+					<p class="myleft" class="mui-content-padded">性别</p>
+					<p class="myright" id="sex">男</p>
+				</li>
+				<li class="mui-table-view-cell" data-options='{"type":"date"}' id="date">
+					<p class="myleft" class="mui-content-padded">生日</p>
+					<p class="myright" id='birthday'>1998-06-06</p>
+				</li>
+				<li class="mui-table-view-cell" id='showCityPicker'>
+					<p class="myleft" class="mui-content-padded">所在地</p>
+					<p class="myright" id='address'>江西省 赣州市</p>
+				</li>
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.picker.js"></script>
+		<script src="../js/mui.dtpicker.js" ></script>
+		<script src="../js/mui.poppicker.js"></script>
+		<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init();
+				document.getElementById('menu').addEventListener("tap", function() {
+					mui.confirm("确定要保存修改吗？", "提示", function(e) {
+						if(e.index == 1) {
+							mui.alert('保存成功');
+
+						}
+						return;
+					})
+				});
+				//更换头像
+				$("#head_img_change").change(function(){
+				   var $file = $(this);
+		　　　　　　var fileObj = $file[0];
+		　　　　　　var windowURL = window.URL || window.webkitURL;
+		　　　　　　var dataURL;
+		　　　　　　var $img = $("#head_image");
+		　　　　　　if(fileObj && fileObj.files && fileObj.files[0]){
+		　　　　　　　　dataURL = windowURL.createObjectURL(fileObj.files[0]);
+		　　　　　　　　$img.attr('src',dataURL);
+		　　　　　　}else{
+		　　　　　　　　dataURL = $file.val();
+		　　　　　　　　var imgObj = document.getElementById("head_image");
+		　　　　　　　　// 1、在设置filter属性时，元素必须已经存在在DOM树中，动态创建的Node，也需要在设置属性前加入到DOM中，先设置属性再加入，无效；
+		　　　　　　　　// 2、src属性需要像下面的方式添加，上面的两种方式添加，无效；
+		　　　　　　　　imgObj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+		　　　　　　　　imgObj.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = dataURL;
+		　　　　　　}
+				});
+				var _getParam = function(obj, param) {
+					return obj[param] || '';
+				};
+				//选择性别
+				var userPicker = new mui.PopPicker();
+				userPicker.setData([{
+					text: '男'
+				}, {
+					text: '女'
+				}]);
+				var showUserPickerButton = document.getElementById('showUserPicker');
+				showUserPickerButton.addEventListener('tap', function(event) {
+					userPicker.show(function(items) {
+
+						document.getElementById('sex').innerHTML = JSON.parse(JSON.stringify(items[0])).text;
+					});
+				}, false);
+				//-----------------------------------------
+				//选择生日
+				var result=document.getElementById('birthday');
+				document.getElementById('date').addEventListener('tap',function(){
+					var _self = this;
+					if(_self.picker) {
+						_self.picker.show(function (rs) {
+							result.innerText = rs.text;
+							_self.picker.dispose();
+							_self.picker = null;
+						});
+					} else {
+						var optionsJson = this.getAttribute('data-options') || '{}';
+						var options = JSON.parse(optionsJson);
+						options.beginYear=1900;
+						options.endYear=new Date().getFullYear();
+						/*
+						 * 首次显示时实例化组件
+						 * 示例为了简洁，将 options 放在了按钮的 dom 上
+						 * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
+						 */
+						_self.picker = new mui.DtPicker(options);
+						_self.picker.show(function(rs) {
+							/*
+							 * rs.value 拼合后的 value
+							 * rs.text 拼合后的 text
+							 * rs.y 年，可以通过 rs.y.vaue 和 rs.y.text 获取值和文本
+							 * rs.m 月，用法同年
+							 * rs.d 日，用法同年
+							 * rs.h 时，用法同年
+							 * rs.i 分（minutes 的第二个字母），用法同年
+							 */
+							result.innerText =  rs.text;
+							/* 
+							 * 返回 false 可以阻止选择框的关闭
+							 * return false;
+							 */
+							/*
+							 * 释放组件资源，释放后将将不能再操作组件
+							 * 通常情况下，不需要示放组件，new DtPicker(options) 后，可以一直使用。
+							 * 当前示例，因为内容较多，如不进行资原释放，在某些设备上会较慢。
+							 * 所以每次用完便立即调用 dispose 进行释放，下次用时再创建新实例。
+							 */
+							_self.picker.dispose();
+							_self.picker = null;
+						});
+					}
+				},false);
+				//选择所在地
+				var cityPicker = new mui.PopPicker({
+					layer: 2
+				});
+				cityPicker.setData(cityData);
+				var showCityPickerButton = document.getElementById('showCityPicker');
+				var address = document.getElementById('address');
+				showCityPickerButton.addEventListener('tap', function(event) {
+					cityPicker.show(function(items) {
+						address.innerText = items[0].text + " " + items[1].text;
+					});
+				}, false);
+			}(mui, document));
+		</script>
+	</body>
+
+</html>

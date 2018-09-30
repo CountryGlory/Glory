@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/login.css" />
+		<style>
+			
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">Friend</h1>
+		</header>
+		<div class="mui-content">
+			<form id='login-form' class="mui-input-group">
+				<div class="mui-input-row">
+					
+					<input id='usercode' type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+				</div>
+				<div class="mui-input-row">
+					
+					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+				</div>
+			</form>
+			<div class="mui-content-padded">
+				<button id='login' class="mui-btn mui-btn-block mui-btn-primary">登录</button>
+				<div class="link-area"><a data-url="reg.html" class='redirect'>注册账号</a> <span class="spliter">|</span> <a data-url="forget_password.html" class="redirect">忘记密码</a>
+				</div>
+			</div>
+			<div class="mui-content-padded oauth-area">
+					
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.enterfocus.js"></script>
+		<script src="../js/app.js"></script>
+		<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+		<script>
+			(function(mui, doc) {
+				mui.init({
+					statusBarBackground: '#f7f7f7'
+				});
+				var usercode=document.getElementById("usercode");
+				var password=document.getElementById("password");
+				var status=app.getStatus();
+				if(status===0){
+                	var users=app.getUser();
+                	if(users!=null){
+	                	usercode.value=users.usernumber;
+                	}
+				}
+				
+				document.getElementById("login").addEventListener('tap',function(){
+					app.login(app.api.userLogin,usercode.value,password.value);
+				});
+				//退出
+				mui.oldBack = mui.back;
+				var backButtonPress = 0;
+				mui.back = function(event) {
+					backButtonPress++;
+					if(backButtonPress > 1) {
+						plus.runtime.quit();
+					} else {
+						plus.nativeUI.toast(ui.index.zaianyicituichu);
+					}
+					setTimeout(function() {
+						backButtonPress = 0;
+					}, 1000);
+				};
+			}(mui, document));
+		</script>
+	</body>
+
+</html>

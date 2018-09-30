@@ -1,0 +1,52 @@
+#backs{
+	float: left;
+}
+#contacts{
+	width:60px;
+	height: 60px;
+	border-radius: 30px;
+	float: left;
+}
+#contacts img{
+	width: 100%;
+	height: 100%;
+	border-radius: 30px;
+}
+.friendnickname{
+	margin-left: 15px;
+	float: left;
+	color: #000000;
+	font-family: "微软雅黑";
+	font-size: 17px;
+}
+.mui-table-view{
+	margin-bottom: 10px;
+}
+#sizeah{
+	margin-left: 20px;
+}
+#diav{
+	width:100%;
+	height: 50px;
+	font-size: 17px;
+}
+#myright{
+	float: right;
+}
+#dupian{
+	width:45px;
+	height: 35px;
+	float:right;
+	
+}
+html{
+	height: 100%;
+}
+.mui-content{
+	height: 100%;
+	background-color: #EBEBEB;
+}
+#qtan{
+	width: 100px;
+	height: 200px;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/group.css" />
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/app.js"></script>
+		<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div id="back"><span class="mui-icon mui-icon-back"></span>
+				<h1 class="mui-title">分组管理</h1>
+				<div id="add">
+					<a href="#">
+						完成
+					</a>
+				</div>
+			</div>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-row mui-search">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">
+							<span class="mui-icon mui-icon-plus">添加分组</span>
+					</li>
+				</ul>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">		
+						<span class="mui-icon mui-icon-minus">好友</span>
+					</li>
+				</ul>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">		
+						<span class="mui-icon mui-icon-minus">家人</span>
+					</li>
+				</ul>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">		
+						<span class="mui-icon mui-icon-minus">朋友</span>
+					</li>
+				</ul>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">		
+						<span class="mui-icon mui-icon-minus">初中同学</span>
+					</li>
+				</ul>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">		
+						<span class="mui-icon mui-icon-minus">同事</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		(function(){
+				//返回
+				mui(".mui-bar-nav").on("tap",".mui-icon-back",function(){
+					mui.back();
+				});
+				//点击完成
+				mui(".mui-bar-nav").on("tap","#add",function(){
+					mui.confirm('确定要保存吗？','提示',function(e){
+						var data=e.index;
+						if(data=1){	
+						}	
+					});
+				});
+		}(mui, document));
+	</script>
+</html>

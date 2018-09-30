@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/group.css" />
+		<link rel="stylesheet" href="../css/contacts.css" />
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/app.js"></script>
+		<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+		<style type="text/css">
+			.mui-icon-plusempty:before {
+				font-size: xx-large;
+			}
+			#wrok{
+				width: 60px;
+				height: 44px;
+				float: right;	
+				}
+			.sise{
+				font-size: 12px;
+				margin-top: 4px;
+			}
+			.mui-slider-item img {
+				height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div id="back"><span class="mui-icon mui-icon-back"></span>
+				<h1 class="mui-title">新朋友</h1>
+				<div id="add">
+					<a href="#">
+						添加
+					</a>
+				</div>
+			</div>
+		</header>
+		<div>
+			<ul class="mui-table-view">
+				<div class="mui-slider">
+				  <div class="mui-slider-group mui-slider-loop">
+				    <!--支持循环，需要重复图片节点-->
+				    <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="../images/head_portrait/py4.jpg" /></a></div>
+				    <div class="mui-slider-item"><a href="#"><img src="../images/head_portrait/py1.jpg" /></a></div>
+				    <div class="mui-slider-item"><a href="#"><img src="../images/head_portrait/py2.jpg" /></a></div>
+				    <div class="mui-slider-item"><a href="#"><img src="../images/head_portrait/py3.jpg" /></a></div>
+				    <div class="mui-slider-item"><a href="#"><img src="../images/head_portrait/py4.jpg" /></a></div>
+				    <!--支持循环，需要重复图片节点-->
+				    <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="../images/head_portrait/py1.jpg" /></a></div>
+				  </div>
+				</div>
+				<li class="mui-table-view-cell">
+					<p>好友通知</p>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+						<img class="mui-media-object mui-pull-left" src="../images/head_portrait/timg.jpg">
+						<div class="mui-media-body">
+							<div id="hname">願你安好！<p class="sise">来源：账号查找</p></div>
+							<input type="button" value="同意" id="wrok"/>
+
+						</div>	
+				</li>
+				<li class="mui-table-view-cell mui-media">
+						<img class="mui-media-object mui-pull-left" src="../images/head_portrait/timg1.jpg">
+						<div class="mui-media-body">
+							<div id="hname">远方<p class="sise">来源：条件查找</p></div>
+							<input type="button"  value="同意" id="wrok"/>
+						</div>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+						<img class="mui-media-object mui-pull-left" src="../images/head_portrait/u=1097202646,3345048323&fm=27&gp=0.jpg">
+						<div class="mui-media-body">
+							<div id="hname">苦逼程序员<p class="sise">来源：手机号查找</p></div>
+							<input type="button"  value="同意" id="wrok"/>
+						</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		(function(){
+			mui.init();
+				//返回
+				mui(".mui-bar-nav").on("tap",".mui-icon-back",function(){
+					mui.back();
+				});
+				//点击添加跳转到添加好友页面
+				mui(".mui-bar-nav").on("tap","#add",function(){
+					app.redirect("../contacts/friendsadd.html");
+				});
+				mui(".mui-table-view").on("tap","#wrok",function(){
+					mui.confirm('确定添加他为好友吗？','提示',function(e){
+						var data=e.index;
+						if(data=1){
+							
+						}	
+					});
+				});
+			}(mui, document));
+			//获得slider插件对象
+			var gallery = mui('.mui-slider');
+			gallery.slider({
+			  interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
+			});
+	</script>
+</html>

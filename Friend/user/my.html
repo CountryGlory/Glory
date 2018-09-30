@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/my.css" />
+		<link rel="stylesheet" href="../css/imageview.css" />
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/app.js"></script>
+		<script type="text/javascript" src="../js/mui.previewimage.js" ></script>
+		<script type="text/javascript" src="../js/mui.zoom.js" ></script>
+		
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div id="back"><span class="mui-icon mui-icon-back"></span></div>
+			<h1 class="mui-title">我的</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<div id="myhead">
+						<img src="../images/head_portrait/u=1097202646,3345048323&fm=27&gp=0.jpg" data-preview-src="" data-preview-group="1" />
+					</div>
+					<p id="mynickname">苦逼程序猿</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<p class="myleft">账号</p>
+					<p class="myright">admin</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<p class="myleft">性别</p>
+					<p class="myright">男</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<p class="myleft">年龄</p>
+					<p class="myright">20</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<p class="myleft">所在地</p>
+					<p class="myright">江西赣州</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="editdata">编辑资料</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="securuty">账号安全</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">设置</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" id="switch">
+					切换账号
+				</li>
+				<li class="mui-table-view-cell" id="close">
+					退出
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			(function(){
+				mui.init();
+				mui.previewImage();
+				//返回
+				mui(".mui-bar-nav").on("tap",".mui-icon-back",function(){
+					mui.back();
+				});
+				//切换账号
+				mui(".mui-table-view").on("tap","#switch",function(){
+					mui.confirm("确认要切换账号吗？","提示",function(e){
+						if(e.index==1){
+							app.setState(0);
+							app.redirect("login.html");
+						}
+					});
+				});
+				mui.plusReady(function(){
+					//退出
+					mui(".mui-table-view").on("tap","#close",function(){
+						mui.confirm("确认要退出程序吗？","提示",function(e){
+							if(e.index==1){
+								console.log("关闭程序");
+								plus.runtime.quit();
+							}
+						});
+						
+					});
+				});
+				//点击编辑资料跳转到编辑资料页面
+				mui(".mui-table-view").on("tap","#editdata",function(){
+					app.redirect("../user/editdata.html");
+				});
+				//点账号安全跳转到账号安全页面
+				mui(".mui-table-view").on("tap","#securuty",function(){
+					app.redirect("../user/security.html");
+				});
+			}(mui, document));
+		</script>
+	</body>
+</html>

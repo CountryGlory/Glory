@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/contacts.css" />
+		<script type="text/javascript" src="../js/mui.min.js" ></script>
+		<script type="text/javascript" src="../js/app.js" ></script>
+		<script type="text/javascript" src="../js/mui.previewimage.js" ></script>
+		<script type="text/javascript" src="../js/mui.zoom.js" ></script>
+		<style type="text/css">
+			.mui-content {
+				padding: 10px;
+			}
+			#dia{
+				width:100%;
+				height: 50px;
+				font-size: 18px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div id="back"><span class="mui-icon mui-icon-back"></span>
+				<h1 class="mui-title">修改密码</h1>
+			</div>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<div class="mui-input-row">
+					  <label>旧密码：</label>
+					  <input type="password" class="mui-input-password" placeholder="请输入密码">
+					</div>
+				</li>
+				
+			</ul><br />
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<div class="mui-input-row">
+					  <label>新密码：</label>
+					  <input type="password" class="mui-input-password" placeholder="请输入密码">
+					</div>
+				</li>
+			
+			</ul>
+			<br />
+			 <div class="mui-button-row">
+		        <button type="button" class="mui-btn mui-btn-primary" id="dia">确定</button>
+		    </div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		(function(){
+			mui.init();
+				//返回
+				mui(".mui-bar-nav").on("tap",".mui-icon-back",function(){
+					mui.back();
+				});
+			}(mui, document));
+	</script>
+</html>

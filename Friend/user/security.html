@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<!--App自定义的css-->
+		<!--<link rel="stylesheet" type="text/css" href="../css/app.css"/>-->
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/app.js"></script>
+		<style type="text/css">
+			.mui-slider-item img {
+				height: 200px;
+			}
+		</style>
+	</head>
+		
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">账号安全</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view mui-table-view-chevron">
+				<li id="switch" class="mui-table-view-cell">
+					定时轮播
+					<div class="mui-switch">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div id="slider" class="mui-slider" >
+			<div class="mui-slider-group mui-slider-loop">
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img src="../images/head_portrait/py7.jpg">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="../images/head_portrait/py5.jpg">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="../images/head_portrait/py6.jpg">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#">
+						<img src="../images/head_portrait/py7.jpg">
+					</a>
+				</div>
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img src="../images/head_portrait/py5.jpg">
+					</a>
+				</div>
+			</div>
+			<div class="mui-slider-indicator">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+			</div>
+		</div>
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell">
+					<p>账号编辑</p>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<div class="mui-navigate-right">
+						<div id="xgmm">修改密码</div>
+					</div>	
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<div class="mui-navigate-right">
+						<div id="xgyxx">修改绑定邮箱</div>
+					</div>	
+				</li>
+		</ul>		
+		<script type="text/javascript" charset="utf-8">
+		
+		(function(){
+				mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			var slider = mui("#slider");
+			document.getElementById("switch").addEventListener('toggle', function(e) {
+				if (e.detail.isActive) {
+					slider.slider({
+						interval: 3000
+					});
+				} else {
+					slider.slider({
+						interval: 0
+					});
+				}
+			});
+				//返回
+				mui(".mui-bar-nav").on("tap",".mui-icon-back",function(){
+					mui.back();
+				});
+				//点击添加跳转到添加好友页面
+				mui(".mui-table-view").on("tap","#xgmm",function(){
+					app.redirect("../user/account.html");
+				});
+			}(mui, document));
+		</script>
+	</body>
+</html>

@@ -1,0 +1,60 @@
+.relevant-header{
+	height: 50px;
+}
+#friend-header{
+	width:40px;
+	height: 40px;
+	border-radius: 30px;
+	float:left;
+	margin-right: 10px;
+}
+#friend-header img{
+	width: 100%;
+	height: 100%;
+	border-radius: 30px;
+
+}
+#friend-name {
+	float: none;
+}
+#friend-name a{
+	color: #000000;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+#friend-name p{
+	font-size: 12px;
+}
+.mui-content{
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+}
+::-webkit-scrollbar{width:0px}
+.mui-table-view{
+	background-color: #EBEBEB;
+}
+.mui-table-view-cell{
+	background-color: white;
+	margin-bottom: 10px;
+}
+.relevant-content{
+	padding-bottom: 10px;
+}
+.relevant-bottom{
+	background-color: #DDDDDD;
+	height: 60px;
+}
+.mui-table-view .mui-media-object{
+	line-height: 60px;
+	max-width: 60px;
+	height: 60px;
+	margin:0px;
+}
+.mui-table-view .mui-media-object.mui-pull-left{
+	margin: 0px;
+}
+.mui-media-body{
+	padding-top: 9px;
+	padding-left: 10px;
+}

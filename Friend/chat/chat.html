@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!--<meta content="" name="description">-->
+		<!--<meta content="" name="keywords">-->
+		<!--<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">-->
+		<!--<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">-->
+		<!--<meta content="no-cache" http-equiv="pragma">-->
+		<!--<meta content="0" http-equiv="expires">-->
+		<!--<meta content="telephone=no, address=no" name="format-detection">-->
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/chat.css" />
+		<link rel="stylesheet" href="../css/webiaoqing.css" />
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/app.js"></script>
+		<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../js/webiaoqin.js"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div id="back"><span class="mui-icon mui-icon-back"></span></div>
+			<h1 class="mui-title"></h1>
+		</header>
+		<div class="mui-center">
+			<div class="center">
+				<ul class="center-ul" id="center-ul">
+					<li class="left">
+						<div class="head"><img src="../images/head_portrait/timg5.jpg" /></div>
+						<div class="content">Hello!能交个朋友吗？</div>
+						<div class="null"></div>
+					</li>
+					<li class="right">
+						<div class="head"><img src="../images/head_portrait/u=1097202646,3345048323&fm=27&gp=0.jpg" /></div>
+						<div class="content">可以！</div>
+					</li>
+				</ul>
+			</div>
+			<div class="bottom">
+				<div id="voice">
+					<span class="mui-icon mui-icon-mic"></span>
+				</div>
+
+				<div id="add">
+					<span class="mui-icon mui-icon-plus"></span>
+				</div>
+				<div id="expression">
+					<img src="../images/icon/20180810084115.png" />
+				</div>
+				<div id="text">
+					<div id="txt">
+						<article id="form_article" contenteditable="true" onkeydown="myInput.listen(this, event);" warp="virtual" v-model="content"></article>
+					</div>
+				</div>
+				<div id="additional">
+					<img src="../images/tuku.jpg" id="sendImg" />
+					<img src="../images/xiangji-icon.jpg" id="sendPhoto" />
+				</div>
+				<div class="page_emotion box_swipe" id="page_emotion">
+					<dl id="list_emotion" class="list_emotion pt_10"></dl>
+					<!-- 表情框 -->
+					<dt><ol id="nav_emotion" class="nav_emotion"></ol></dt>
+					<!-- 分页提示点 -->
+				</div>
+				<button id="send">发送</button>
+			</div>
+		</div>
+		<script type="text/javascript">
+			(function() {
+				mui.init();
+				/*window.addEventListener('username',function(e){
+					var username=e.detail.username;
+					$(".mui-title").text(username);
+				});*/
+				var friendName = app.getUrlParam('friendName');
+				document.getElementsByClassName('mui-title')[0].innerText = friendName;
+				//当输入框有值时显示发送按钮，当输入框为空时隐藏发送按钮
+
+				//返回
+				mui(".mui-bar-nav").on("tap", ".mui-icon-back", function() {
+					mui.back();
+				});
+				var addhidden = 0;
+				var expressionhidden = 0;
+				//单击+图标出现附加功能
+				mui(".bottom").on("tap", "#add", function() {
+					if(addhidden == 0) {
+						$(".center").css({
+							"bottom": "50px",
+							"padding-top": "98px"
+						});
+						$(".bottom").css("bottom", "0px");
+						$("#page_emotion").css("display", "none");
+						$(".center").css({
+							"bottom": "120px",
+							"padding-top": "168px"
+						});
+						$(".bottom").css("height", "120px");
+						$("#additional").css("visibility", "inherit");
+
+						addhidden += 1;
+					} else {
+						$(".center").css({
+							"bottom": "50px",
+							"padding-top": "98px"
+						});
+						$(".bottom").css("height", "50px");
+						$("#additional").css("visibility", "hidden");
+						addhidden = 0;
+					}
+
+				});
+				//点击表情
+				document.getElementById("expression").addEventListener('tap', function() {
+					if(expressionhidden == 0) {
+						$(".center").css({
+							"bottom": "50px",
+							"padding-top": "98px"
+						});
+						$(".bottom").css("height", "50px");
+						$("#additional").css("visibility", "hidden");
+						$(".mui-center>.center").css({
+							"bottom": "230px",
+							"padding-top": "278px"
+						});
+						$(".mui-center>.bottom").css("bottom", "183px");
+						$("#page_emotion").css("display", "inherit");
+						expressionhidden += 1;
+					} else {
+						$(".center").css({
+							"bottom": "50px",
+							"padding-top": "98px"
+						});
+						$(".bottom").css("bottom", "0px");
+						$("#page_emotion").css("display", "none");
+						expressionhidden = 0;
+					}
+				});
+				document.getElementById('form_article').addEventListener('keyup', function(even) {
+					var articlehtml=document.getElementById('form_article').innerHTML;
+					if(document.getElementById('send') != null) {
+						if(articlehtml != '') {
+							document.getElementById('send').style.visibility = "visible";
+						} else {
+							document.getElementById('send').style.visibility = "hidden";
+						}
+					}
+				});
+				//发送消息
+				var send = document.getElementById('send');
+				send.addEventListener('tap', function() {
+					var content = document.getElementById('form_article').innerHTML;
+					if(document.getElementById('form_article').innerText.trim()!=""){
+						var ul = document.getElementsByClassName('center-ul')[0];
+						ul.innerHTML += "<li class='right'>" +
+							"<div class='head'><img src='../images/head_portrait/u=1097202646,3345048323&fm=27&gp=0.jpg'/></div>" +
+							"<div class='content'>" + content + "</div>" +
+							"</li>";
+						document.getElementById('form_article').innerHTML = '';
+						this.style.visibility = "hidden";
+						document.getElementsByClassName('center')[0].scrollTop = document.getElementsByClassName('center')[0].scrollHeight;
+					}
+				});
+				mui.plusReady(function() {
+					//发送消息
+					var send = document.getElementById('send');
+					send.addEventListener('tap', function() {
+						var content = vm.content;
+						var ul = document.getElementsByClassName('content-ul')[0];
+						ul.innerHTML += "<li class='right'>" +
+							"<div class='head'><img src='../images/head_portrait/u=1097202646,3345048323&fm=27&gp=0.jpg'/></div>" +
+							"<div class='center'>" + content + "</div>" +
+							"</li>";
+						vm.content = '';
+					});
+					//发送图片
+					document.getElementById('sendImg').addEventListener('tap', function() {
+						app.galleryImg();
+					});
+					//拍照
+					document.getElementById('sendPhoto').addEventListener('tap', function() {
+						app.getImage();
+					});
+				});
+
+			}(mui, document));
+		</script>
+	</body>
+
+</html>
