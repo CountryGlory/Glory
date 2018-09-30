@@ -16,7 +16,7 @@ public interface UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public UserModel login(String nameNumber,String password)throws Exception;
+	public User login(String nameNumber,String password)throws Exception;
 	/**
 	 * 自动登录
 	 * @param nameNumber
@@ -25,7 +25,7 @@ public interface UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean zjlogin(String nameNumber)throws Exception;
+	public String zjlogin(String nameNumber,String sessionId)throws Exception;
 	/**
 	 * 注册
 	 * @param user

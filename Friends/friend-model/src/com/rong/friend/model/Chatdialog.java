@@ -1,9 +1,15 @@
 package com.rong.friend.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Chatdialog {
-    private String id;
+public class Chatdialog implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -967289208690402926L;
+
+	private String id;
 
     private String userid;
 
@@ -16,8 +22,28 @@ public class Chatdialog {
     private String friendsid;
 
     private Date lastdt;
+    
+    private User user;
+    
+    private Friends friends;
 
-    public String getId() {
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Friends getFriends() {
+		return friends;
+	}
+
+	public void setFriends(Friends friends) {
+		this.friends = friends;
+	}
+
+	public String getId() {
         return id;
     }
 

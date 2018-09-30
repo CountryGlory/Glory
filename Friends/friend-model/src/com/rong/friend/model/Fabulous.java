@@ -1,9 +1,15 @@
 package com.rong.friend.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Fabulous {
-    private String id;
+public class Fabulous implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7819427002320566136L;
+
+	private String id;
 
     private String spaceid;
 
@@ -12,8 +18,28 @@ public class Fabulous {
     private Integer status;
 
     private Date createdt;
+    
+    private Look space;
+    
+    private User user;
 
-    public String getId() {
+    public Look getSpace() {
+		return space;
+	}
+
+	public void setSpace(Look space) {
+		this.space = space;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getId() {
         return id;
     }
 

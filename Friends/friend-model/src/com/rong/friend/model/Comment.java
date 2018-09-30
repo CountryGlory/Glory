@@ -1,9 +1,15 @@
 package com.rong.friend.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Comment {
-    private String id;
+public class Comment implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3915212433562614548L;
+
+	private String id;
 
     private String spaceid;
 
@@ -16,8 +22,38 @@ public class Comment {
     private Integer status;
 
     private Date createdt;
+    
+    private Look space;
+    
+    private User commfoUser;
+    
+    private User commtoUser;
 
-    public String getId() {
+    public Look getSpace() {
+		return space;
+	}
+
+	public void setSpace(Look look) {
+		this.space = look;
+	}
+
+	public User getCommfoUser() {
+		return commfoUser;
+	}
+
+	public void setCommfoUser(User commfoUser) {
+		this.commfoUser = commfoUser;
+	}
+
+	public User getCommtoUser() {
+		return commtoUser;
+	}
+
+	public void setCommtoUser(User commtoUser) {
+		this.commtoUser = commtoUser;
+	}
+
+	public String getId() {
         return id;
     }
 

@@ -9,10 +9,11 @@
     <result column="fabulousId" property="fabulousid" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="createdt" property="createdt" jdbcType="TIMESTAMP" />
+    <result column="read" property="read" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, userId, commentId, messageId, fabulousId, content, createdt, status
+    id, userId, commentId, messageId, fabulousId, content, createdt, read, status
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -27,10 +28,10 @@
   <insert id="insert" parameterType="com.rong.friend.model.Relatedtome" >
     insert into relatedtome (id, userId, commentId, 
       messageId, fabulousId, content, 
-      createdt, status)
+      createdt, read, status)
     values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{commentid,jdbcType=VARCHAR}, 
       #{messageid,jdbcType=VARCHAR}, #{fabulousid,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{createdt,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
+      #{createdt,jdbcType=TIMESTAMP}, #{read}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.rong.friend.model.Relatedtome" >
     insert into relatedtome
@@ -55,6 +56,9 @@
       </if>
       <if test="createdt != null" >
         createdt,
+      </if>
+      <if test="read != null">
+      	read,
       </if>
       <if test="status != null" >
         status,
@@ -82,6 +86,9 @@
       <if test="createdt != null" >
         #{createdt,jdbcType=TIMESTAMP},
       </if>
+      <if test="read != null">
+      	#{read}
+      </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
@@ -108,6 +115,9 @@
       <if test="createdt != null" >
         createdt = #{createdt,jdbcType=TIMESTAMP},
       </if>
+      <if test="read != null">
+      	#{read}
+      </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
@@ -122,6 +132,7 @@
       fabulousId = #{fabulousid,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       createdt = #{createdt,jdbcType=TIMESTAMP},
+      read = #{read},
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>

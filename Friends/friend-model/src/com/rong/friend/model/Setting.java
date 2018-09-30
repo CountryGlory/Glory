@@ -1,9 +1,15 @@
 package com.rong.friend.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Setting {
-    private String id;
+public class Setting implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6212925361638774504L;
+
+	private String id;
 
     private String userid;
 
@@ -12,8 +18,18 @@ public class Setting {
     private Integer shock;
 
     private Date createdt;
+    
+    private User user;
 
-    public String getId() {
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getId() {
         return id;
     }
 

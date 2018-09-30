@@ -2,7 +2,14 @@ package com.rong.friend.api;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +23,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.rong.friend.dao.UserMapper;
 import com.rong.friend.entity.UserModel;
 import com.rong.friend.model.User;
 import com.rong.friend.service.UserService;
+import com.rong.friend.util.RedisUtil;
+import com.rong.friend.util.SessionUtil;
+import com.rong.friend.util.UUIDUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -41,7 +52,7 @@ public class UserApi {
 	private UserService userService;
 	
 	@Autowired
-	private RedisTemplate<String, String> redistemplate;
+	private RedisUtil redisUtil;
 	
 	/**
 	 * 用户登录
@@ -52,14 +63,25 @@ public class UserApi {
 	 */
 	@ApiOperation(value="用户登录")
 	@PostMapping("/login")
-	public @ResponseBody String login(@ApiParam(value="账号",required=true) @RequestParam String userCode
-			,@ApiParam(value="密码",required=true) @RequestParam String password) {
+	public @ResponseBody Object login(@ApiParam(value="账号",required=true) @RequestParam String userCode
+			,@ApiParam(value="密码",required=true) @RequestParam String password,HttpServletRequest request,HttpServletResponse response) {
 		try {
-			UserModel user=userService.login(userCode, password);
-			JSONObject jsonObject=new JSONObject();
-			String data=jsonObject.toJSON(user).toString();
+			//String userCode=reques.getParameter("userCode");
+			//String password=reques.getParameter("password");
+			User user=userService.login(userCode, password);
+//			Cookie [] cookie=reques.getCookies();
+//			String sessionId=cookie[0].getValue();
+//			System.out.println(sessionId);
+//			redisUtil.hmSet(sessionId,"user",user);
+//			HttpSession session=request.getSession();
+//			System.out.println(session.getId());
+//			if(session.getAttribute("user")!=null) {
+//				session.removeAttribute("user");
+//			}
+//			session.setAttribute("user", user);
+			addSession(request, user.getId());
 			logger.info("用户"+userCode+"登录成功!");
-			return data;
+			return user;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,53 +91,38 @@ public class UserApi {
 		}
 	}
 	
-	/**
-	 * 自动登录
-	 * @param userCode
-	 * @param status
-	 * @return
-	 */
-	@ApiOperation(value="自动登录")
-	@GetMapping("/zidonglogin")
-	public boolean zidongLogin(@ApiParam(value="账号",required=true) @RequestParam String userCode) {
-		try {
-			boolean result=userService.zjlogin(userCode);
-			logger.info("自动登录成功！");
-			return result;
-		} catch (Exception e) {
-			logger.error("自动登录失败:"+e.getMessage());
-			return false;
+	@GetMapping("/addsession")
+	public void addSession(HttpServletRequest request,@RequestParam Object object) throws Exception {
+		Cookie [] cookies=request.getCookies();
+		if(cookies.length<=0) {
+			throw new Exception("zuul网关无sessionId传入");
+		}else {
+			String sessionId=cookies[0].getValue();
+			redisUtil.remove(sessionId);
+			redisUtil.set(sessionId, object);
+		}
+		
+	}
+	
+	@GetMapping("/getsession")
+	public String getSession(@RequestParam(name="sessionId") String sessionId) throws Exception {
+		Object object=redisUtil.get(sessionId);
+		System.out.println("hello feign");
+		if(object==null) {
+			return null;
+		}
+		return object.toString();
+	}
+	
+	@GetMapping("/deletesession")
+	public void deleteSession(HttpServletRequest request) throws Exception {
+		Cookie [] cookies=request.getCookies();
+		if(cookies.length<=0) {
+			throw new Exception("zuul网关无sessionId传入");
+		}else {
+			String sessionId=cookies[0].getValue();
+			redisUtil.remove(sessionId);
 		}
 	}
 	
-	/**
-	 * 聊天会话
-	 * @param userCode
-	 * @param sessionId
-	 * @return
-	 * @throws Exception
-	 */
-	@ApiOperation(value="消息首页")
-	@GetMapping("/chatMain")
-	public Object chatMain(@ApiParam(value="账号",required=true) @RequestParam String userCode)throws Exception{
-		try {
-			
-		} catch (Exception e) {
-			
-		}
-		return null;
-	}
-	
-	@GetMapping("/sessionService")
-	public Integer sessionService(@RequestParam String sessionId,@RequestParam String userCode) {
-		Integer result;
-		try {
-			result = userService.verificationSession(sessionId, userCode);
-			return result;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return 0;
-		}
-	}
 }

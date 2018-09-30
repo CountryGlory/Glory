@@ -25,6 +25,7 @@
 		<module>friend-eureka-peer2</module>
 		<module>friend-user-service</module>
 		<module>friend-service-zuul</module>
+		<module>friend-chat-service</module>
 	</modules>
 
 	<properties>
@@ -44,7 +45,7 @@
 		<dependency>
 			<groupId>com.rong</groupId>
 			<artifactId>rong-friend-model</artifactId>
-			<version>20180916</version>
+			<version>20180926</version>
 		</dependency>
 		<!-- logback 推送日志文件到logstash -->
 		<dependency>

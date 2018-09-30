@@ -1,9 +1,16 @@
 package com.rong.friend.model;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class Friendsgrouping {
-    private String id;
+public class Friendsgrouping implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7905807098261447025L;
+
+	private String id;
 
     private String userid;
 
@@ -12,8 +19,28 @@ public class Friendsgrouping {
     private Integer status;
 
     private Date createdt;
+    
+    private User user;
+    
+    private List<Friends> friendList;
 
-    public String getId() {
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<Friends> getFriendList() {
+		return friendList;
+	}
+
+	public void setFriendList(List<Friends> friendList) {
+		this.friendList = friendList;
+	}
+
+	public String getId() {
         return id;
     }
 

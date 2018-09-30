@@ -1,9 +1,15 @@
 package com.rong.friend.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Friendapply {
-    private String id;
+public class Friendapply implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7764249197212714159L;
+
+	private String id;
 
     private String senduserid;
 
@@ -12,10 +18,32 @@ public class Friendapply {
     private String content;
 
     private Integer status;
+    
+    private Integer read;
 
     private Date createdt;
+    
+    private User sendUser;
+    
+	private User toUser;
 
-    public String getId() {
+    public User getSendUser() {
+		return sendUser;
+	}
+
+	public void setSendUser(User sendUser) {
+		this.sendUser = sendUser;
+	}
+
+	public User getToUser() {
+		return toUser;
+	}
+
+	public void setToUser(User toUser) {
+		this.toUser = toUser;
+	}
+
+	public String getId() {
         return id;
     }
 
@@ -54,6 +82,14 @@ public class Friendapply {
     public void setStatus(Integer status) {
         this.status = status;
     }
+    
+    public Integer getRead() {
+		return read;
+	}
+
+	public void setRead(Integer read) {
+		this.read = read;
+	}
 
     public Date getCreatedt() {
         return createdt;

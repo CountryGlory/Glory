@@ -1,9 +1,15 @@
 package com.rong.friend.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
-    private String id;
+public class User implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 9160087743306486030L;
+
+	private String id;
 
     private String namenumber;
 

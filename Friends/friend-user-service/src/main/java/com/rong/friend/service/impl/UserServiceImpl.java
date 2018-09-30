@@ -25,36 +25,40 @@ public class UserServiceImpl implements UserService{
 	private UserMapper userMapper;
 	 
 	@Override
-	public UserModel login(String userNumber,String password) throws Exception {
+	public User login(String userNumber,String password) throws Exception {
 		User user=userMapper.selectBynameNumberLogin(userNumber);
-		UserModel userModel=new UserModel(user);
-		userModel.setSessionId(UUIDUtil.UUID64());
+		//userModel.setSessionId(UUIDUtil.UUID64());
 		if(user==null) {
 			throw new Exception("该账号不存在！");
-		}else if(!userModel.getPassword().equals(MD5Util.generateMD5(password))) {
-			userModel=null;
+		}else if(!user.getPassword().equals(MD5Util.generateMD5(password))) {
+			user=null;
 			throw new Exception("密码错误！");
 		}else {
 			user.setStatus(1);
 			int result=userMapper.updateByPrimaryKey(user);
 			if(result!=1) {
-				userModel=null;
+				user=null;
 				throw new Exception("系统异常");
 			}
 		}
-		SessionUtil.setSessionId(userModel.getSessionId(),userModel.getId());
-		userModel.setSessionId(null);
-		return userModel;
+		//SessionUtil.setSessionId(userModel.getSessionId(),userModel.getId());
+		return user;
 		
 	}
 	
 	@Override
-	public boolean zjlogin(String nameNumber) throws Exception {
-		User user=new User();
-		user.setStatus(1);
-		user.setNamenumber(nameNumber);
-		userMapper.updateByPrimaryKeySelective(user);
-		return true;
+	public String zjlogin(String nameNumber,String sessionId) throws Exception {
+		User user=userMapper.selectBynameNumberLogin(nameNumber);
+		if(user==null || !SessionUtil.provingSession(user.getId(), sessionId)) {
+			return null;
+		}else {
+			user.setStatus(1);
+			userMapper.updateByPrimaryKeySelective(user);
+			SessionUtil.removeSessionId(sessionId);
+			String newSessionId=UUIDUtil.UUID64();
+			SessionUtil.setSessionId(newSessionId,user.getId());
+			return newSessionId;
+		}
 	}
 	
 	@Override

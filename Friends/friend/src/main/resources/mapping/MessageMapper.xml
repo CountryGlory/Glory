@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rong.friend.dao.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.rong.friend.model.Message" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="commenterId" property="commenterid" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="createdt" property="createdt" jdbcType="TIMESTAMP" />
+    <result column="reply" property="reply" jdbcType="VARCHAR" />
+    <result column="lastcreatedt" property="lastcreatedt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, content, commenterId, userId, createdt, reply, lastcreatedt
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from message
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from message
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rong.friend.model.Message" >
+    insert into message (id, content, commenterId, 
+      userId, createdt, reply, 
+      lastcreatedt)
+    values (#{id,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{commenterid,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=VARCHAR}, #{createdt,jdbcType=TIMESTAMP}, #{reply,jdbcType=VARCHAR}, 
+      #{lastcreatedt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rong.friend.model.Message" >
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="commenterid != null" >
+        commenterId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="createdt != null" >
+        createdt,
+      </if>
+      <if test="reply != null" >
+        reply,
+      </if>
+      <if test="lastcreatedt != null" >
+        lastcreatedt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="commenterid != null" >
+        #{commenterid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdt != null" >
+        #{createdt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reply != null" >
+        #{reply,jdbcType=VARCHAR},
+      </if>
+      <if test="lastcreatedt != null" >
+        #{lastcreatedt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rong.friend.model.Message" >
+    update message
+    <set >
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="commenterid != null" >
+        commenterId = #{commenterid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdt != null" >
+        createdt = #{createdt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reply != null" >
+        reply = #{reply,jdbcType=VARCHAR},
+      </if>
+      <if test="lastcreatedt != null" >
+        lastcreatedt = #{lastcreatedt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rong.friend.model.Message" >
+    update message
+    set content = #{content,jdbcType=VARCHAR},
+      commenterId = #{commenterid,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR},
+      createdt = #{createdt,jdbcType=TIMESTAMP},
+      reply = #{reply,jdbcType=VARCHAR},
+      lastcreatedt = #{lastcreatedt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
