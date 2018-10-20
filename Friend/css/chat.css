@@ -75,47 +75,41 @@ body{
 #back{
 	float: left;
 }
-#voice{
+#chat_voice{
 	float: left;
 	height: 100%;
 	width: 24px;
 	padding-top: 2px;
 }
-#text{
-	
-}
-#text #txt{
-	height: 100%;
-	margin:0 78px 0 30px
-}
-#text #form_article{
-	height: 30px;
-	width: 100%;
+#chat_form_article{
+	height: 35px;
+	width: 70%;
 	padding: 4px;
 	margin: 0px;
 	overflow: hidden;
 	border: 1px solid #BBBBBB;
 	border-radius: 3px;
 }
-#expression img{
+#chat_expression img{
 	width: 20px;
 	height: 20px;
 }
-#expression{
+#chat_expression{
 	float: right;
 	width: 24px;
+	height: 24px;
 	height: 100%;
 	padding-top: 4px;
 	margin-right: 8px;
 }
-#add{
+#chat_add{
 	width: 24px;
 	float: right;
-	height: 100%;
-	padding-top: 2px;
+	height: 24px;
+	padding-top: 4px;
 	margin-right: 10px;
 }
-#send{
+#chat_send{
 	background-color: #6495ED;
 	position: absolute;
 	right: 5px;
@@ -129,17 +123,20 @@ body{
 	border: #6495ED;
 	visibility: hidden;
 }
-#additional{
+#chat_additional{
 	padding: 10px;
 	visibility: hidden;
 	position: absolute;
 	bottom: 0px;
 }
-#additional img{
+#chat_additional img{
 	width: 50px;
 	height: 50px;
 	margin-right: 20px;
 }
-#page_emotion{
+#chat_biaoqin{
 	background-color: white;
+}
+li{
+	list-style-type: none;
 }

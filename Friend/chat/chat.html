@@ -71,21 +71,86 @@
 		</div>
 		<script type="text/javascript">
 			(function() {
-				mui.init();
-				/*window.addEventListener('username',function(e){
-					var username=e.detail.username;
-					$(".mui-title").text(username);
-				});*/
-				var friendName = app.getUrlParam('friendName');
-				document.getElementsByClassName('mui-title')[0].innerText = friendName;
+				mui.init({
+					pullRefresh: {
+						container: '.center',
+						down: {
+							auto:true,
+							style:'circle',
+							callback: pulldownRefresh
+						}
+					}
+				});
+//				window.addEventListener('username',function(e){
+//					var username=e.detail.username;
+//					$(".mui-title").text(username);
+//				});
 				//当输入框有值时显示发送按钮，当输入框为空时隐藏发送按钮
 
 				//返回
 				mui(".mui-bar-nav").on("tap", ".mui-icon-back", function() {
-					mui.back();
+					history.go(-1);
 				});
 				var addhidden = 0;
 				var expressionhidden = 0;
+				var pageindex=0;
+				function pullPage(){
+					var href=location.search;
+					var friendId = href.substring(href.lastIndexOf('=')+1,href.length);
+					mui.get(app.api.chatPage+"?friendId="+friendId,function(data){
+						if(data.length==2){
+							var chatRecords=data[0][0];
+							var friendUser=data[1];
+							var myUser=app.user;
+							var lis="";
+							for(var i=0;i<chatRecords.length;i++){
+								var chatRecord=chatRecords[i];
+								if(chatRecord.sendUserId==myUser.id){
+									lis+='<li class="right">'
+										+'<div class="head"><img src="..'+myUser.headportrait+'" /></div>'
+										+'<div class="content">'+chatRecord.msg+'</div>'
+									+'</li>';
+								}else if(chatRecord.recUserId==myUser.id){
+									lis+='<li class="left">'
+										+'<div class="head"><img src="..'+friendUser.headportrait+'" /></div>'
+										+'<div class="content">'+chatRecord.msg+'</div>'
+										+'<div class="null"></div>'
+									+'</li>';
+								}
+							}
+							document.getElementsByClassName("mui-title")[0].innerText=friendUser.nickname;
+							document.getElementById("center-ul").innerHTML=lis;
+							return true;
+						}else if(data=='error'){
+							mui.toast("系统错误！");
+						}
+						return false;
+					});
+				}
+				/**
+				 * 下拉刷新
+				 */
+				function pulldownRefresh() {
+					setTimeout(function() {
+						
+						if(pullPage()){
+							mui.toast("刷新成功");
+						}
+						//chatMain.firstChild;
+						mui('.center').pullRefresh().endPulldownToRefresh(); //refresh completed
+					}, 1500);
+				}
+				//当点击输入框时关闭表情和附加功能
+				document.getElementById("form_article").addEventListener("tap",function(){
+					$(".center").css({
+						"bottom": "50px",
+						"padding-top": "98px"
+					});
+					$(".bottom").css("bottom", "0px");
+					$(".bottom").css("height", "50px");
+					$("#page_emotion").css("display", "none");
+					$("#additional").css("visibility", "hidden");
+				});
 				//单击+图标出现附加功能
 				mui(".bottom").on("tap", "#add", function() {
 					if(addhidden == 0) {
@@ -154,12 +219,14 @@
 				var send = document.getElementById('send');
 				send.addEventListener('tap', function() {
 					var content = document.getElementById('form_article').innerHTML;
-					if(document.getElementById('form_article').innerText.trim()!=""){
+					console.log(content);
+					if(content!=""){
 						var ul = document.getElementsByClassName('center-ul')[0];
-						ul.innerHTML += "<li class='right'>" +
-							"<div class='head'><img src='../images/head_portrait/u=1097202646,3345048323&fm=27&gp=0.jpg'/></div>" +
-							"<div class='content'>" + content + "</div>" +
-							"</li>";
+						var li=document.createElement('li');
+						li.innerHTML="<div class='head'><img src='../images/head_portrait/u=1097202646,3345048323&fm=27&gp=0.jpg'/></div>" +
+							"<div class='content'>" + content + "</div>" ;
+						li.setAttribute('class','right');
+						ul.appendChild(li);
 						document.getElementById('form_article').innerHTML = '';
 						this.style.visibility = "hidden";
 						document.getElementsByClassName('center')[0].scrollTop = document.getElementsByClassName('center')[0].scrollHeight;

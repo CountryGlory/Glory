@@ -7,6 +7,9 @@
 	//版本
 	owner.version = "1.0.0";
 	
+	//main页面当前div
+	owner.mainPage="chatMain";
+	
 	var apiAddr = "local"; //local,remote,remotetest
 	if(apiAddr == "local") {
 		owner.baseUri = "http://127.0.0.1:8781/";
@@ -24,7 +27,8 @@
 		chatUnSign: owner.baseUri + "api-chat/ur",
 		chatSign: owner.baseUri + "api-chat/sr",
 		chatSettop: owner.baseUri + "api-chat/stc",
-		chatDelchat: owner.baseUri + "api-chat/rc"
+		chatDelchat: owner.baseUri + "api-chat/rc",
+		chatPage: owner.baseUri + "api-chat/chatindex"
 	}
 
 	mui.ajaxSettings.error=function(xhr,type,errorThrown){
@@ -96,7 +100,7 @@
 					owner.clearStatus();
 					owner.setUser(newuser);
 					owner.setPassword(password);
-					owner.redirect("../main/chatindex.html");
+					owner.redirect("../main/main.html");
 				}
 				else { //登录失败
 					if(r=="该账号不存在！"||r=="密码错误！") {
@@ -145,7 +149,9 @@
 	// 获取url中的参数
 	owner.getUrlParam = function(name) {
 		var url = decodeURI(decodeURI(location.search));
+		console.log(url);
 		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		console.log(reg);
 		var r = url.substr(1).match(reg);
 		if(r != null) {
 			return unescape(r[2]);

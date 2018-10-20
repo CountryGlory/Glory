@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!--<meta content="" name="description">-->
+		<!--<meta content="" name="keywords">-->
+		<!--<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">-->
+		<!--<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">-->
+		<!--<meta content="no-cache" http-equiv="pragma">-->
+		<!--<meta content="0" http-equiv="expires">-->
+		<!--<meta content="telephone=no, address=no" name="format-detection">-->
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<style type="text/css">
+			.mui-table-view-cell.mui-active{
+				background-color: white;
+			}
+			li{
+				list-style-type: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content" style="background-color: white;">
+		  <div id="txt" contenteditable="true">
+		  	
+		  </div>
+		</div>
+		<script type="text/javascript">
+			(function(){
+				var str='<div class="mui-slider">'
+						+'<div class="mui-slider-group">';
+				for(var i=1;i<=91;i++){
+					if(i==1){
+						str+='<div class="mui-slider-item">'
+								+'<div class="mui-row">'
+									+'<div class="mui-col-sm-2 mui-col-xs-2">'
+										+'<li class="mui-table-view-cell">'
+											+'<img src="../images/qq/'+i+'.gif"/>'
+										+'</li>'
+									+'</div>';
+						
+					}else if(i%17==0){
+						str+='<div class="mui-col-sm-2 mui-col-xs-2">'
+								+'<li class="mui-table-view-cell">'
+									+'<img src="../images/qq/'+i+'.gif"/>'
+								+'</li>'
+							+'</div>'
+							+'<div class="mui-col-sm-2 mui-col-xs-2">'
+								+'<li class="mui-table-view-cell">'
+									+'<img src="../images/qq/del.png"/>'
+								+'</li>'
+							+'</div>'
+						+'</div>'
+					+'</div>';
+					}else if(i%17==1){
+						str+='<div class="mui-slider-item">'
+								+'<div class="mui-row">'
+									+'<div class="mui-col-sm-2 mui-col-xs-2">'
+										+'<li class="mui-table-view-cell">'
+											+'<img src="../images/qq/'+i+'.gif"/>'
+										+'</li>'
+									+'</div>';
+					}else if(i==91){
+						str+='<div class="mui-col-sm-2 mui-col-xs-2">'
+								+'<li class="mui-table-view-cell">'
+									+'<img src="../images/qq/'+i+'.gif"/>'
+								+'</li>'
+							+'</div>'
+							+'<div class="mui-col-sm-2 mui-col-xs-2">'
+								+'<li class="mui-table-view-cell">'
+									+'<img src="../images/qq/del.png"/>'
+								+'</li>'
+							+'</div>'
+						+'</div>'
+					+'</div>'
+				+'</div>'
+				+'<div class="mui-slider-indicator">';
+					for(var j=0;j<Math.ceil(91/17);j++){
+						if(j==0){
+							str+='<div class="mui-indicator mui-active"></div>';
+						}else{
+							str+='<div class="mui-indicator"></div>';
+						}
+					}
+					str+='</div>'
+					+'</div>';
+				
+					}else{
+						str+='<div class="mui-col-sm-2 mui-col-xs-2">'
+								+'<li class="mui-table-view-cell">'
+									+'<img src="../images/qq/'+i+'.gif"/>'
+								+'</li>'
+							+'</div>';
+					}
+					
+				}
+				console.log(str);
+				document.getElementsByClassName('mui-content')[0].innerHTML=str;
+				str="";
+			}(mui, document));
+		</script>
+	</body>
+
+</html>
