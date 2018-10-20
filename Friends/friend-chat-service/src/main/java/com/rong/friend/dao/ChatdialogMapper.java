@@ -16,8 +16,12 @@ public interface ChatdialogMapper {
     int updateByPrimaryKeySelective(Chatdialog record);
 
     int updateByPrimaryKey(Chatdialog record);
-    
+
     List<Chatdialog> selectChatdialogByUserId(String userId);
-    
+
     int updateTopChat(String id);
+
+    String selectChatdialogId(String userId, String friendUserId);
+
+    int addUnreadchatNumber(String chatdialogId) throws Exception;
 }

@@ -21,12 +21,10 @@ import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * redis配置文件
- * 
  * @author 荣
  *
  */
-@EnableCaching
-public class RedisConfig {
+public class RedisConfig{
 	private static Logger logger = LoggerFactory.getLogger(RedisConfig.class);
 
 	@Bean

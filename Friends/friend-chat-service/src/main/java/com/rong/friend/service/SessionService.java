@@ -1,4 +1,4 @@
-package com.rong.friend.service;
+/*package com.rong.friend.service;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,3 +13,4 @@ public interface SessionService {
 	@RequestMapping(value="/getsession",method = RequestMethod.GET)
 	public String getsession(@RequestParam(name="sessionId") String sessionId);
 }
+*/

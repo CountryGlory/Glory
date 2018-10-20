@@ -45,7 +45,7 @@
 		<dependency>
 			<groupId>com.rong</groupId>
 			<artifactId>rong-friend-model</artifactId>
-			<version>20180926</version>
+			<version>20181012</version>
 		</dependency>
 		<!-- logback 推送日志文件到logstash -->
 		<dependency>

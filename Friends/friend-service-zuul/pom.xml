@@ -66,6 +66,11 @@
 			<artifactId>spring-boot-starter-redis</artifactId>
 			<version>1.4.7.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.9.0</version>
+		</dependency>
 		<!-- SpringCloud feign -->
 		 <dependency>
             <groupId>org.springframework.cloud</groupId>

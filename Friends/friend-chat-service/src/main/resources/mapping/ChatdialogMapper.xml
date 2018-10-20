@@ -36,6 +36,10 @@
   		inner join user u on f.userid=u.id
   	where c.userid=#{userId,jdbcType=VARCHAR} and f.status!=0 order by c.sortno
   </select>
+  <select id="selectChatdialogId" resultType="java.lang.String" parameterType="java.lang.String">
+    select a.id from chatdialog a inner join friends b on a.friendsid=b.id
+    where a.userid=#{userId} and b.userId=#{friendUserId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
   	update chatdialog set sortno=sortno-1 from (select sortno,userid where id=#{id,jdbcType=VARCHAR}) a where sortno>a.sortno and userid=a.userid;
     delete from chatdialog
@@ -138,7 +142,10 @@
   </update>
   <update id="updateTopChat" parameterType="com.rong.friend.model.Chatdialog">
   	update chatdialog set sortno=0 where id=#{id};
-update chatdialog c inner join (select b.sortno,b.userid from chatdialog b where b.id=#{id}) a on 1=1 set c.sortno=c.sortno+1 where c.sortno>a.sortno and c.userid=a.userid ;
-update chatdialog set sortno=1 where id=#{id};
+    update chatdialog c inner join (select b.sortno,b.userid from chatdialog b where b.id=#{id}) a on 1=1 set c.sortno=c.sortno+1 where c.sortno>a.sortno and c.userid=a.userid ;
+    update chatdialog set sortno=1 where id=#{id};
+  </update>
+  <update id="addUnreadchatNumber" parameterType="java.lang.String">
+    update chatdialog set unreadchat+=1 where id=#{chatdialogId}
   </update>
 </mapper>

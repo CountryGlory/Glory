@@ -1,6 +1,5 @@
 package com.rong.friend.filter;
 
-import static org.hamcrest.CoreMatchers.nullValue;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +18,7 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import com.rong.friend.model.User;
-import com.rong.friend.service.SessionService;
+import com.rong.friend.util.RedisUtil;
 
 /**
  * 过滤器
@@ -32,7 +31,7 @@ public class MyFilter extends ZuulFilter{
 	private static Logger log = LoggerFactory.getLogger(MyFilter.class);
 	
 	@Autowired
-	private SessionService sessionService;
+	private RedisUtil redisUtil;
 	
 //	@Autowired
 //    HttpServletRequest httpServletRequest;
@@ -71,7 +70,7 @@ public class MyFilter extends ZuulFilter{
 		ctx.setResponseStatusCode(200);//返回200正确响应
 		if(request.getRequestURI().equals("/api-user/login"))
 				return null;
-		if(sessionService.getsession(sessionId)==null) {
+		if(redisUtil.get(sessionId)==null) {
 			ctx.setSendZuulResponse(false);
 			ctx.setResponseStatusCode(401);
 			ctx.set("error.status_code",HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

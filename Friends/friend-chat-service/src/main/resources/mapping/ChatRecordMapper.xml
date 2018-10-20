@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rong.friend.dao.ChatRecordMapper" >
+    <resultMap id="ChatRecordMap" type="com.rong.friend.model.ChatRecord">
+        <id column="id" property="id" />
+        <result column="sendUserId" property="sendUserId"/>
+        <result column="msg" property="msg"/>
+        <result column="recUserId" property="recUserId"/>
+        <result column="status" property="status"/>
+        <result column="createdt" property="createdt"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,sendUserId,msg,recUserId,status,createdt
+    </sql>
+    <select id="selectChatRecordsByUserId" resultMap="ChatRecordMap" >
+        select 
+        <include refid="Base_Column_List"/>
+        from chatrecord  where (sendUserId=#{sendUserId} and recUserId=#{recUserId}) or (recUserId=#{sendUserId} and sendUserId=#{recUserId})
+        order by createdt  limit #{start},#{size}
+    </select>
+    <insert id="insertChatRecord" parameterType="com.rong.friend.model.ChatRecord">
+        insert into chatrecord(id,sendUserId,msg,recUserId,status,createdt)
+        values (#{id},#{sendUserId},#{msg},#{recUserId},#{status},#{createdt})
+    </insert>
+</mapper>

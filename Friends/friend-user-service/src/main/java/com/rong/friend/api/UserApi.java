@@ -1,6 +1,5 @@
 package com.rong.friend.api;
 
-import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -79,7 +78,7 @@ public class UserApi {
 //				session.removeAttribute("user");
 //			}
 //			session.setAttribute("user", user);
-			addSession(request, user.getId());
+			redisUtil.set(request.getCookies()[0].getValue(), user.getId());
 			logger.info("用户"+userCode+"登录成功!");
 			return user;
 		} catch (Exception e) {
@@ -88,40 +87,6 @@ public class UserApi {
 			String error=e.getMessage();
 			logger.error(error);
 			return error;
-		}
-	}
-	
-	@GetMapping("/addsession")
-	public void addSession(HttpServletRequest request,@RequestParam Object object) throws Exception {
-		Cookie [] cookies=request.getCookies();
-		if(cookies.length<=0) {
-			throw new Exception("zuul网关无sessionId传入");
-		}else {
-			String sessionId=cookies[0].getValue();
-			redisUtil.remove(sessionId);
-			redisUtil.set(sessionId, object);
-		}
-		
-	}
-	
-	@GetMapping("/getsession")
-	public String getSession(@RequestParam(name="sessionId") String sessionId) throws Exception {
-		Object object=redisUtil.get(sessionId);
-		System.out.println("hello feign");
-		if(object==null) {
-			return null;
-		}
-		return object.toString();
-	}
-	
-	@GetMapping("/deletesession")
-	public void deleteSession(HttpServletRequest request) throws Exception {
-		Cookie [] cookies=request.getCookies();
-		if(cookies.length<=0) {
-			throw new Exception("zuul网关无sessionId传入");
-		}else {
-			String sessionId=cookies[0].getValue();
-			redisUtil.remove(sessionId);
 		}
 	}
 	
