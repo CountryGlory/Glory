@@ -1,4 +1,4 @@
-package com.rong.friend.oauthserver.config;
+package com.microservice.skeleton.auth.config;
 
 import com.microservice.skeleton.auth.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,8 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 import javax.sql.DataSource;
 
 /**
- * Created by Mr.Yangxiufeng on 2017/12/28. Time:11:02
+ * Created by Mr.Yangxiufeng on 2017/12/28.
+ * Time:11:02
  * ProjectName:Mirco-Service-Skeleton
  */
 @Configuration

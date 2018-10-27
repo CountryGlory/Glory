@@ -1,4 +1,4 @@
-package com.rong.friend.oauthserver.config;
+package com.microservice.skeleton.auth.config;
 
 import com.microservice.skeleton.auth.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * Created by Mr.Yangxiufeng on 2017/12/27. Time:16:42
+ * Created by Mr.Yangxiufeng on 2017/12/27.
+ * Time:16:42
  * ProjectName:Mirco-Service-Skeleton
  */
 @Configuration

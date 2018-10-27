@@ -1,0 +1,64 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-RegisterApplication<Micro-Service-Skeleton-Register>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.skeleton.register.RegisterApplication",
+            "projectName": "Micro-Service-Skeleton-Register",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GatewayApplication<Micro-Service-Skeleton-Gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.skeleton.gateway.GatewayApplication",
+            "projectName": "Micro-Service-Skeleton-Gateway",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AuthCenterApplication<Micro-Service-Skeleton-Auth>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.skeleton.auth.AuthCenterApplication",
+            "projectName": "Micro-Service-Skeleton-Auth",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MonitorApplication<Micro-Service-Skeleton-Monitor>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.skeleton.monitor.MonitorApplication",
+            "projectName": "Micro-Service-Skeleton-Monitor",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ResourceApplication<Micro-Service-Skeleton-Resource>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.skeleton.resource.ResourceApplication",
+            "projectName": "Micro-Service-Skeleton-Resource",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-UpmsApplication<microservice.skeleton.upms>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.skeleton.upms.UpmsApplication",
+            "projectName": "microservice.skeleton.upms",
+            "args": ""
+        }
+    ]
+}
