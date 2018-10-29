@@ -2,6 +2,13 @@ eureka:
   client:
     service-url:
       defauleZone: http://peer1:8761/eureka/ #http://friendeureka:gloryfriend@peer1:8761/eureka/,http://friendeureka:gloryfriend@peer2:8762/eureka/
+  instance:
+    prefer-ip-address: true 
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    ##续约更新时间间隔设置5秒，m默认30s
+    lease-renewal-interval-in-seconds: 5
+    ##续约到期时间10秒，默认是90秒
+    lease-expiration-duration-in-seconds: 10
 server:
   port: 8781
 spring:
@@ -45,19 +52,13 @@ zuul:
       sensitiveHeaders:
       serviceId: friend-oauth-server
 security:
-  basic:
-    enabled: false
   oauth2:
-#    sso:
-#      loginPath: /login
-#    client:
-#      ##网关的地址
-#      access-token-uri: http://localhost:9030/uaa/oauth/token
-#      user-authorization-uri: http://localhost:9030/uaa/oauth/authorize
-#      client-id: webApp
-#      client-secret: webApp
+    client:
+      access-token-uri: http://localhost:9060/oauth/token
+      user-authorization-uri: http://localhost:9060/oauth/authorize
+      client-id: friend-service-zuul
     resource:
-      user-info-uri:  http://localhost:9060/user
+      user-info-uri: http://localhost:9060/userinfo
       prefer-token-info: false
 feign
   hystrix
