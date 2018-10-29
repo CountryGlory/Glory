@@ -7,6 +7,11 @@ server:
 spring:
   application:
     name: friend-service-zuul
+  rabbitmq:
+    host: 120.79.238.208
+    password: guest
+    port: 5672
+    username: guest
   #redis缓存配置
   redis:
     database: 0
