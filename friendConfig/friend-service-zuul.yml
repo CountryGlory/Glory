@@ -14,6 +14,7 @@ server:
 spring:
   application:
     name: friend-service-zuul
+  #动态刷新配置文件
   rabbitmq:
     host: 120.79.238.208
     password: guest
@@ -60,8 +61,8 @@ security:
     resource:
       user-info-uri: http://localhost:9060/userinfo
       prefer-token-info: false
-feign
-  hystrix
+feign:
+  hystrix:
     enabled: true
 hystrix:
   command:
