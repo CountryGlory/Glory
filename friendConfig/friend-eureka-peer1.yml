@@ -10,7 +10,12 @@ eureka:
     service-url:
       defaultZone: http://peer2:8762/eureka/
       
-      
+security:
+  oauth2:
+    resource:
+      id: resource
+      user-info-uri: http://localhost:9030/uaa/user
+      prefer-token-info: false
 spring:
   application:
     name: friend-eureka-peer1

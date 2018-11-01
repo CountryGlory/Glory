@@ -56,6 +56,12 @@ spring:
     password: guest
     port: 5672
     username: guest
+security:
+  oauth2:
+    resource:
+      id: resource
+      user-info-uri: http://localhost:9030/uaa/user
+      prefer-token-info: false
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.rong.friend.model
