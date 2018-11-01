@@ -108,6 +108,16 @@
             "request": "attach",
             "hostName": "localhost",
             "port": "<debug port of remote debuggee>"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoApplication<friend-oauth-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.rong.friend.oauthserver.DemoApplication",
+            "projectName": "friend-oauth-server",
+            "args": ""
         }
     ]
 }

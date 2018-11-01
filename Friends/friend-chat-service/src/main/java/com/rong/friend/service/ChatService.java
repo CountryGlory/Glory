@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.rong.friend.dao.ChatdialogMapper;
 import com.rong.friend.model.ChatRecord;
 import com.rong.friend.model.Chatdialog;
-import com.rong.friend.model.ChatdialogModel;
 
 /**
  * 聊天模块业务逻辑接口

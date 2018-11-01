@@ -1,0 +1,74 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ConfigApplication<service-config>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.cloud.zhuwj.config.ConfigApplication",
+            "projectName": "service-config",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DiscoveryApplication<service-discovery>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.cloud.zhuwj.discovery.DiscoveryApplication",
+            "projectName": "service-discovery",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GatewayApplication<service-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.cloud.zhuwj.gateway.GatewayApplication",
+            "projectName": "service-gateway",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ClassUtil<service-common>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.cloud.zhuwj.common.utils.ClassUtil",
+            "projectName": "service-common",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MessageApplication<service-message>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.cloud.zhuwj.message.MessageApplication",
+            "projectName": "service-message",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-QuartzApplication<service-quartz>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.cloud.zhuwj.quartz.QuartzApplication",
+            "projectName": "service-quartz",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AuthoriaztionApplication<service-authorization>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.cloud.zhuwj.authorization.AuthoriaztionApplication",
+            "projectName": "service-authorization",
+            "args": ""
+        }
+    ]
+}

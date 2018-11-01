@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=E://java/git/Glory/Friends/friend-common/target/friend-common-0.0.1-SNAPSHOT.jar -DgroupId=com.rong.friend.common -DartifactId=friend-common -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar

@@ -59,7 +59,7 @@ security:
       user-authorization-uri: http://localhost:9060/oauth/authorize
       client-id: friend-service-zuul
     resource:
-      user-info-uri: http://localhost:9060/userinfo
+      user-info-uri: http://localhost:9060/user
       prefer-token-info: false
 feign:
   hystrix:

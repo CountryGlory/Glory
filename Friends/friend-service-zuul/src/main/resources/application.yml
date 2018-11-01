@@ -1,3 +1,0 @@
-spring:
-  application:
-    name: friend-service-zuul

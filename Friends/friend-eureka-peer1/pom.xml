@@ -15,7 +15,7 @@
 		<groupId>com.rong</groupId>
 		<artifactId>sc-f-chapter1</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../friend-pom/pom.xml</relativePath>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<dependencies>

@@ -1,6 +1,5 @@
 package com.rong.friend.service.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -10,8 +9,6 @@ import java.util.Map;
 import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +21,6 @@ import com.rong.friend.dao.RelatedtomeMapper;
 import com.rong.friend.dao.UserMapper;
 import com.rong.friend.model.ChatRecord;
 import com.rong.friend.model.Chatdialog;
-import com.rong.friend.model.ChatdialogModel;
 import com.rong.friend.model.User;
 import com.rong.friend.service.ChatService;
 import com.rong.friend.util.RedisUtil;
@@ -182,7 +178,7 @@ public class ChatServiceImpl implements ChatService {
 		chatRecords = (List<ChatRecord>) (List) redisUtil.lRange("chat_userId_" + userId + "_friendId_" + friendId, 0,
 				-1);
 		if (chatRecords.size() == 0) {
-			String friendUserId = friendsMapper.selectByPrimaryKey(friendId);
+			String friendUserId = friendsMapper.selectUserIdByPrimaryKey(friendId);
 			User friendUser = userMapper.selectByPrimaryKey(friendUserId);
 			chatRecords = chatRecordMapper.selectChatRecordsByUserId(userId, friendUserId, 0, 50);
 			data.add(chatRecords);

@@ -15,11 +15,7 @@ spring:
         serviceId: friend-config-server
       label: master
       profile: 
-      name: friend-service-zuul     #定义要读取的资源文件名称
+      name: friend-service-zuul    
 #      username: friendeureka
 #      password: gloryfriend
-  rabbitmq:
-    host: 120.79.238.208
-    password: guest
-    port: 5672
-    username: guest
+  

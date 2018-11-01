@@ -1,6 +1,5 @@
 package com.rong.friend.api;
 
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -26,6 +25,7 @@ import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.rong.friend.dao.UserMapper;
 import com.rong.friend.entity.UserModel;
+import com.rong.friend.model.Result;
 import com.rong.friend.model.User;
 import com.rong.friend.service.UserService;
 import com.rong.friend.util.RedisUtil;
@@ -38,56 +38,72 @@ import io.swagger.annotations.ApiParam;
 
 /**
  * 用户API
+ * 
  * @author 荣
  *
  */
-@Api(tags= {"user"})
+@Api(tags = { "user" })
 @RestController
 public class UserApi {
 
-	private static final Logger logger=LoggerFactory.getLogger(UserApi.class);
-	
+	private static final Logger logger = LoggerFactory.getLogger(UserApi.class);
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private RedisUtil redisUtil;
-	
+
 	/**
 	 * 用户登录
-	 * @param userCode 用户账号
-	 * @param password 密码
-	 * @param sessionId session唯一标识，用于验证设备的唯一性
+	 * 
+	 * @param userCode
+	 *                      用户账号
+	 * @param password
+	 *                      密码
+	 * @param sessionId
+	 *                      session唯一标识，用于验证设备的唯一性
 	 * @return
 	 */
-	@ApiOperation(value="用户登录")
+	@ApiOperation(value = "用户登录")
 	@PostMapping("/login")
-	public @ResponseBody Object login(@ApiParam(value="账号",required=true) @RequestParam String userCode
-			,@ApiParam(value="密码",required=true) @RequestParam String password,HttpServletRequest request,HttpServletResponse response) {
+	public @ResponseBody Object login(@ApiParam(value = "账号", required = true) @RequestParam String userCode,
+			@ApiParam(value = "密码", required = true) @RequestParam String password, HttpServletRequest request,
+			HttpServletResponse response) {
 		try {
-			//String userCode=reques.getParameter("userCode");
-			//String password=reques.getParameter("password");
-			User user=userService.login(userCode, password);
-//			Cookie [] cookie=reques.getCookies();
-//			String sessionId=cookie[0].getValue();
-//			System.out.println(sessionId);
-//			redisUtil.hmSet(sessionId,"user",user);
-//			HttpSession session=request.getSession();
-//			System.out.println(session.getId());
-//			if(session.getAttribute("user")!=null) {
-//				session.removeAttribute("user");
-//			}
-//			session.setAttribute("user", user);
+			// String userCode=reques.getParameter("userCode");
+			// String password=reques.getParameter("password");
+			User user = userService.login(userCode, password);
+			// Cookie [] cookie=reques.getCookies();
+			// String sessionId=cookie[0].getValue();
+			// System.out.println(sessionId);
+			// redisUtil.hmSet(sessionId,"user",user);
+			// HttpSession session=request.getSession();
+			// System.out.println(session.getId());
+			// if(session.getAttribute("user")!=null) {
+			// session.removeAttribute("user");
+			// }
+			// session.setAttribute("user", user);
 			redisUtil.set(request.getCookies()[0].getValue(), user.getId());
-			logger.info("用户"+userCode+"登录成功!");
+			logger.info("用户" + userCode + "登录成功!");
 			return user;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			String error=e.getMessage();
+			String error = e.getMessage();
 			logger.error(error);
 			return error;
 		}
 	}
-	
+
+	@GetMapping("friendByUsername/{username}")
+	public Result FriendByUserName(@PathVariable("username") String username) {
+		try {
+			return userService.findUserByNameNumber(username);
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			return Result.failure(100, "系统错误");
+		}
+	}
+
 }
