@@ -21,7 +21,7 @@
 	</parent>
 
 	<modules>
-		<module>friend-eureka-peer1</module>
+		<module>friend-eureka-server</module>
 		<module>friend-eureka-peer2</module>
 		<module>friend-user-service</module>
 		<module>friend-service-zuul</module>
@@ -64,15 +64,6 @@
             <artifactId>logstash-logback-encoder</artifactId>
             <version>5.1</version>
         </dependency>
-		<!--安全验证-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-oauth2</artifactId>
-		</dependency>
 		<!-- <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-dependencies</artifactId>

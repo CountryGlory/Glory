@@ -1,6 +1,7 @@
 package com.rong.friend;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
@@ -18,6 +19,7 @@ import org.springframework.web.filter.CorsFilter;
 @EnableZuulProxy
 @EnableEurekaClient
 @EnableFeignClients
+@EnableOAuth2Sso
 public class FriendServiceZuulApplication {
 
 	public static void main(String[] args) {

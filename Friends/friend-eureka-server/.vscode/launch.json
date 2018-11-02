@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoApplication<friend-eureka-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.rong.friend.DemoApplication",
+            "projectName": "friend-eureka-server",
+            "args": ""
+        }
+    ]
+}
