@@ -14,6 +14,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,6 +31,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         User userVo = new User();
         BeanUtils.copyProperties(result.getData(), userVo);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        // 加密
+        String encodedPassword = passwordEncoder.encode(userVo.getPassword().trim());
+        System.out.println(encodedPassword);
+        userVo.setPassword(encodedPassword);
         boolean enabled = true; // 可用性 :true:可用 false:不可用
         boolean accountNonExpired = true; // 过期性 :true:没过期 false:过期
         boolean credentialsNonExpired = true; // 有效性 :true:凭证有效 false:凭证无效

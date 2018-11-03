@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
@@ -89,5 +91,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         security.tokenKeyAccess("permitAll()");
         security.checkTokenAccess("isAuthenticated()");
         security.allowFormAuthenticationForClients();
+    }
+
+    @Override
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+
+        // password 方案一：明文存储，用于测试，不能用于生产
+        // String finalSecret = "123456";
+        // password 方案二：用 BCrypt 对密码编码
+        // String finalSecret = new BCryptPasswordEncoder().encode("123456");
+        // password 方案三：支持多种编码，通过密码的前缀区分编码方式
+        String finalSecret = new BCryptPasswordEncoder().encode("123456".trim());
+        // 配置两个客户端,一个用于password认证一个用于client认证
+        clients.inMemory().withClient("app").authorizedGrantTypes("password", "refresh_token").scopes("app")
+                .secret(finalSecret);
     }
 }

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringBoot2Oauth2App<client-credentials-springboot2>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "moe.cnkirito.security.oauth2.SpringBoot2Oauth2App",
+            "projectName": "client-credentials-springboot2",
+            "args": ""
+        }
+    ]
+}

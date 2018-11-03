@@ -42,7 +42,8 @@ public class MyFilter extends ZuulFilter {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 		if (request.getRequestURI().equals("/api-user/v2/api-docs")
-				|| request.getRequestURI().equals("/api-chat/v2/api-docs")) {
+				|| request.getRequestURI().equals("/api-chat/v2/api-docs")
+				|| request.getRequestURI().equals("/api-user/login")) {
 			return false;
 		} else {
 			return true;
@@ -76,6 +77,7 @@ public class MyFilter extends ZuulFilter {
 		// return null;
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		log.info("send {} request to {}", request.getMethod(), request.getRequestURL().toString());
 		return null;

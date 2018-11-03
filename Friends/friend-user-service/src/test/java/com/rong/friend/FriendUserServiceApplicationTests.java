@@ -11,6 +11,7 @@ public class FriendUserServiceApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
 }
