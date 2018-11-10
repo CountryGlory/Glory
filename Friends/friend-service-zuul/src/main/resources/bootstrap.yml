@@ -18,4 +18,4 @@ spring:
       name: friend-service-zuul    
 #      username: friendeureka
 #      password: gloryfriend
-  
+

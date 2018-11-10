@@ -72,6 +72,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+		<dependency>
+            <groupId>com.netflix.feign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+            <version>8.18.0</version>
+        </dependency>
        <!--安全验证-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -90,6 +95,12 @@
         <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<!--导入工具包-->
+		<dependency>
+			<groupId>com.rong.friend.common</groupId>
+			<artifactId>friend-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

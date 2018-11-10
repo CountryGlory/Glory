@@ -30,13 +30,13 @@ public class SecurityConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/v2/api-docs", "/uaa/**").permitAll();
 
-        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http
-                .authorizeRequests();
+        // ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http
+        //         .authorizeRequests();
         for (String au : AUTH_WHITELIST) {
             http.authorizeRequests().antMatchers(au).permitAll();
         }
         http.authorizeRequests().anyRequest().authenticated();
-        registry.anyRequest().access("@permissionService.hasPermission(request,authentication)");
+       // registry.anyRequest().access("@permissionService.hasPermission(request,authentication)");
     }
 
     @Override

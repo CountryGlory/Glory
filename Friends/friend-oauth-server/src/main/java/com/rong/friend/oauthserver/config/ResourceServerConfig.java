@@ -22,7 +22,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http.csrf().disable().exceptionHandling()
                 .authenticationEntryPoint(
                         (request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                .and().authorizeRequests().antMatchers("/login", "/test").permitAll().anyRequest().authenticated().and()
-                .httpBasic();
+                .and().authorizeRequests().antMatchers("/login", "/v2/api-docs").permitAll().anyRequest()
+                .authenticated().and().httpBasic();
     }
 }

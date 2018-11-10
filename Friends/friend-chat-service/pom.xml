@@ -129,28 +129,16 @@
             <optional>true</optional>
             <scope>true</scope>
         </dependency> -->
-        <!-- jwt加密工具包 -->
-        <dependency>
-		    <groupId>com.auth0</groupId>
-		    <artifactId>java-jwt</artifactId>
-		    <version>2.2.0</version>
-		</dependency>
-		<!-- shiro权限控制包 -->
-		<dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>1.4.0</version>
-        </dependency>
 		
-		<!-- spring session -->
-		<!-- <dependency>  
-        	<groupId>org.springframework.session</groupId>  
-        	<artifactId>spring-session-data-redis</artifactId>  
-		</dependency> -->
 		<!-- SpringCloud feign -->
 		 <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+		 <dependency>
+            <groupId>com.netflix.feign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+            <version>8.18.0</version>
         </dependency>
         <!-- WebSocket包 -->
 		<dependency>

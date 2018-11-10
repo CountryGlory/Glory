@@ -1,5 +1,6 @@
 package com.rong.friend.api;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -12,8 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.druid.util.StringUtils;
+import com.rong.friend.common.util.WebContextUtil;
 import com.rong.friend.model.ChatRecord;
+import com.rong.friend.model.User;
 import com.rong.friend.service.ChatService;
+import com.rong.friend.service.UserService;
 import com.rong.friend.util.RedisUtil;
 
 import io.swagger.annotations.Api;
@@ -36,7 +41,13 @@ public class ChatApi {
 	private ChatService chatService;
 
 	@Autowired
+	private UserService userService;
+
+	@Autowired
 	private RedisUtil redisUtil;
+
+	@Autowired
+	private HttpServletRequest request;
 
 	/**
 	 * 聊天会话
@@ -48,14 +59,15 @@ public class ChatApi {
 	 */
 	@ApiOperation(value = "消息首页")
 	@GetMapping("/cm")
-	public Object chatMain(HttpServletRequest request) {
+	public Object chatMain() {
 		try {
 			long t1 = System.currentTimeMillis();
 			logger.info("时间一：" + t1 + "ms");
-			String sessionId = request.getCookies()[0].getValue();
-			String userId = redisUtil.get(sessionId).toString();
+			Principal newuser = userService.user();
+			String userId = newuser.getName();
 			long t2 = System.currentTimeMillis();
 			logger.info("时间二：" + t2 + "ms");
+			// 可能出错了
 			Map<String, Object> map = chatService.getChatdialogModelALL(userId);
 			long t3 = System.currentTimeMillis();
 			logger.info("时间三：" + t3 + "ms");

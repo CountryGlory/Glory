@@ -51,51 +51,6 @@ public class UserApi {
 	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private RedisUtil redisUtil;
-
-	/**
-	 * 用户登录
-	 * 
-	 * @param userCode
-	 *                      用户账号
-	 * @param password
-	 *                      密码
-	 * @param sessionId
-	 *                      session唯一标识，用于验证设备的唯一性
-	 * @return
-	 */
-	@ApiOperation(value = "用户登录")
-	@PostMapping("/login")
-	public @ResponseBody Result<User> login(@ApiParam(value = "账号", required = true) @RequestParam String username,
-			@ApiParam(value = "密码", required = true) @RequestParam String password, HttpServletRequest request,
-			HttpServletResponse response) {
-		try {
-			// String userCode=reques.getParameter("userCode");
-			// String password=reques.getParameter("password");
-			User user = userService.login(username, password);
-			// Cookie [] cookie=reques.getCookies();
-			// String sessionId=cookie[0].getValue();
-			// System.out.println(sessionId);
-			// redisUtil.hmSet(sessionId,"user",user);
-			// HttpSession session=request.getSession();
-			// System.out.println(session.getId());
-			// if(session.getAttribute("user")!=null) {
-			// session.removeAttribute("user");
-			// }
-			// session.setAttribute("user", user);
-			redisUtil.set(request.getCookies()[0].getValue(), user.getId());
-			logger.info("用户" + username + "登录成功!");
-			return Result.ok().setData(user);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			String error = e.getMessage();
-			logger.error(error);
-			return Result.failure(500, error);
-		}
-	}
-
 	@GetMapping("friendByUsername/{username}")
 	public Result<User> FriendByUserName(@PathVariable("username") String username) {
 		try {

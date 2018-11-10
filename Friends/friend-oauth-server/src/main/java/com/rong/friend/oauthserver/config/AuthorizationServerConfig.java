@@ -103,7 +103,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         // password 方案三：支持多种编码，通过密码的前缀区分编码方式
         String finalSecret = new BCryptPasswordEncoder().encode("123456".trim());
         // 配置两个客户端,一个用于password认证一个用于client认证
-        clients.inMemory().withClient("app").authorizedGrantTypes("password", "refresh_token").scopes("app")
+        clients.inMemory().withClient("webapp").authorizedGrantTypes("password", "refresh_token").scopes("webapp")
                 .secret(finalSecret);
     }
 }

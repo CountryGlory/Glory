@@ -122,6 +122,11 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>2.6.1</version>
         </dependency>
+		<!-- SpringCloud feign -->
+		 <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
         <!-- 热部署 -->
         <!-- <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -130,17 +135,17 @@
             <scope>true</scope>
         </dependency> -->
         <!-- jwt加密工具包 -->
-        <dependency>
+        <!-- <dependency>
 		    <groupId>com.auth0</groupId>
 		    <artifactId>java-jwt</artifactId>
 		    <version>2.2.0</version>
-		</dependency>
+		</dependency> -->
 		<!-- shiro权限控制包 -->
-		<dependency>
+		<!-- <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
             <version>1.4.0</version>
-        </dependency>
+        </dependency> -->
 		<!--安全验证-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableEurekaClient
 @MapperScan("com.rong.friend.dao")
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.rong.friend")
 @EnableTransactionManagement
 public class FriendChatServiceApplication {
 
