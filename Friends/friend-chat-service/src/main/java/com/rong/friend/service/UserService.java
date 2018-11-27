@@ -14,5 +14,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface UserService {
 
     @RequestMapping("/user")
-    Principal user();
+    public Principal user();
 }

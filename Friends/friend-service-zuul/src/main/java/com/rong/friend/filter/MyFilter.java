@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.springframework.util.StringUtils;
 
 /**
  * 过滤器
@@ -25,6 +26,10 @@ import com.netflix.zuul.exception.ZuulException;
 public class MyFilter extends ZuulFilter {
 
 	private static Logger log = LoggerFactory.getLogger(MyFilter.class);
+
+	private static final String AUTHORIZATION_HEADER = "Authorization";
+
+	private static final String BEARER_TOKEN_TYPE = "bearer";
 
 	// @Autowired
 	// private RedisUtil redisUtil;
@@ -80,6 +85,20 @@ public class MyFilter extends ZuulFilter {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		log.info("send {} request to {}", request.getMethod(), request.getRequestURL().toString());
+		String accessTokenHead = request.getHeader("token");
+		String accessTokenParam=request.getParameter("token");
+
+		if(StringUtils.isEmpty(accessTokenHead)&& StringUtils.isEmpty(accessTokenParam==null)){
+			log.warn("Authorization token is empty");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			ctx.setResponseBody("Authorization token is empty");
+			return null;
+		}else if(!StringUtils.isEmpty(accessTokenParam)&& StringUtils.isEmpty(accessTokenHead)){
+			ctx.addZuulRequestHeader(AUTHORIZATION_HEADER,BEARER_TOKEN_TYPE+accessTokenParam);
+		}else if(StringUtils.isEmpty(accessTokenParam)&& !StringUtils.isEmpty(accessTokenHead)){
+			ctx.addZuulRequestHeader(AUTHORIZATION_HEADER,BEARER_TOKEN_TYPE+accessTokenHead);
+		}
 		return null;
 	}
 

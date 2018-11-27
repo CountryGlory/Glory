@@ -22,7 +22,7 @@
 
 	<modules>
 		<module>friend-eureka-server</module>
-		<module>friend-eureka-peer2</module>
+        <module>friend-config-server</module>
 		<module>friend-user-service</module>
 		<module>friend-service-zuul</module>
 		<module>friend-chat-service</module>
