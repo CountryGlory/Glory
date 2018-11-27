@@ -62,6 +62,12 @@ security:
       id: resource
       user-info-uri: http://localhost:9030/uaa/user
       prefer-token-info: false
+logging:
+  config: classpath:logback.xml
+  level:
+    org:
+      springframework:
+        web: info
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.rong.friend.model

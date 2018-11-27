@@ -67,7 +67,6 @@ public class ChatApi {
 			String userId = newuser.getName();
 			long t2 = System.currentTimeMillis();
 			logger.info("时间二：" + t2 + "ms");
-			// 可能出错了
 			Map<String, Object> map = chatService.getChatdialogModelALL(userId);
 			long t3 = System.currentTimeMillis();
 			logger.info("时间三：" + t3 + "ms");

@@ -61,6 +61,12 @@ security:
     resource:
       user-info-uri: http://localhost:9060/user
       prefer-token-info: false
+logging:
+  config: classpath:logback.xml
+  level:
+    org:
+      springframework:
+        web: info
 feign:
   hystrix:
     enabled: true
