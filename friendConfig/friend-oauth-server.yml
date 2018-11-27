@@ -26,7 +26,7 @@ eureka:
     lease-expiration-duration-in-seconds: 10
   client:
       service-url:
-        defaultZone: http://peer1:8761/eureka/,http://peer2:9762/eureka/
+        defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
 endpoints:
   health:
     sensitive: false
