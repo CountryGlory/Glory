@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.rong.friend.service.FeignOAuth2Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,21 @@ public class UserApi {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private FeignOAuth2Service feignOAuth2Service;
+
+	@ApiOperation(value = "获取用户信息")
+	@GetMapping("/my")
+	public Result<User> getUser(){
+		try{
+			String userId=feignOAuth2Service.getUserid();
+			return Result.ok().setData(userService.findUserById(userId));
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			return Result.failure(100,"系统错误");
+		}
+	}
 
 	@GetMapping("friendByUsername/{username}")
 	public Result<User> FriendByUserName(@PathVariable("username") String username) {

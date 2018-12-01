@@ -23,4 +23,10 @@ public class UserController {
         //System.out.println(user.getName());
         return user;
     }
+
+    @RequestMapping("/getUserid")
+    public String getUserno(Principal user){
+        String userid=user.getName();
+        return userid;
+    }
 }

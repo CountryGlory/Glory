@@ -61,25 +61,6 @@ public class MyFilter extends ZuulFilter {
 	 */
 	@Override
 	public Object run() throws ZuulException {
-		// RequestContext ctx = RequestContext.getCurrentContext();
-		// HttpServletRequest request=ctx.getRequest();
-		// HttpServletResponse response=ctx.getResponse();
-		// HttpSession session=request.getSession();
-		// String sessionId=session.getId();
-		// System.out.println(sessionId);
-		// ctx.addZuulRequestHeader("Cookie", "SESSION="+sessionId);
-		// ctx.setSendZuulResponse(true);//对该请求进行路由
-		// ctx.setResponseStatusCode(200);//返回200正确响应
-		// if(request.getRequestURI().equals("/api-user/login"))
-		// return null;
-		// if(redisUtil.get(sessionId)==null) {
-		// ctx.setSendZuulResponse(false);
-		// ctx.setResponseStatusCode(401);
-		// ctx.set("error.status_code",HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-		// ctx.set("error.exception",new RuntimeException("sessionId is null"));
-		// log.error("sessionId is null");
-		// }
-		// return null;
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 

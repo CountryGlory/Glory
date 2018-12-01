@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.websocket.Session;
 
+import com.rong.friend.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,7 @@ import com.rong.friend.model.User;
 import com.rong.friend.service.ChatService;
 import com.rong.friend.util.RedisUtil;
 import com.rong.friend.util.UUIDUtil;
+import org.springframework.util.StringUtils;
 
 /**
  * 聊天模块业务接口实现类
@@ -53,7 +55,7 @@ public class ChatServiceImpl implements ChatService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Map<String, Object> getChatdialogModelALL(String userId) throws Exception {
+	public Result<Map<String, Object>> getChatdialogModelALL(String userId) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Chatdialog> chatdialogs = new ArrayList<>();
 		if (!redisUtil.exists("chatdialig_list_userid_" + userId)) {
@@ -74,11 +76,11 @@ public class ChatServiceImpl implements ChatService {
 			map.put("lookChatCount", lookChatCount);
 			map.put("friendCahtCount", friendChatCount);
 		}
-		return map;
+		return Result.ok().setData(map);
 	}
 
 	@Override
-	public boolean removeChatdialog(String id, String userId) throws Exception {
+	public Result<String> removeChatdialog(String id, String userId) throws Exception {
 		int data = chatdialogMapper.deleteByPrimaryKey(id);
 		if (data > 0) {
 
@@ -88,49 +90,49 @@ public class ChatServiceImpl implements ChatService {
 					chatdialogs.remove(var);
 				}
 			}
-			return true;
+			return Result.ok();
 		} else {
-			return false;
+			return Result.failure(200,"操作失败");
 		}
 	}
 
 	@Override
-	public boolean markedAsRead(String id) throws Exception {
+	public Result<String> markedAsRead(String id) throws Exception {
 		Chatdialog chatdialog = new Chatdialog();
 		chatdialog.setId(id);
 		chatdialog.setUnreadchat(0);
 		int data = chatdialogMapper.updateByPrimaryKeySelective(chatdialog);
 		if (data > 0) {
-			return true;
+			return Result.ok();
 		} else {
-			return false;
+			return Result.failure(200,"操作失败");
 		}
 	}
 
 	@Override
-	public boolean markedAsNoRead(String id) throws Exception {
+	public Result<String> markedAsNoRead(String id) throws Exception {
 		Chatdialog chatdialog = chatdialogMapper.selectByPrimaryKey(id);
 		chatdialog.setUnreadchat(chatdialog.getUnreadchat() + 1);
 		int data = chatdialogMapper.updateByPrimaryKey(chatdialog);
 		if (data > 0) {
-			return true;
+			return Result.ok();
 		} else {
-			return false;
+			return Result.failure(200,"操作失败");
 		}
 	}
 
 	@Override
-	public boolean setTopChat(String id) throws Exception {
+	public Result<String> setTopChat(String id) throws Exception {
 		int data = chatdialogMapper.updateTopChat(id);
 		if (data > 0) {
-			return true;
+			return Result.ok();
 		} else {
-			return false;
+			return Result.failure(200,"操作失败");
 		}
 	}
 
 	@Override
-	public boolean addChatdialog(String userId, String friendId, String newChat) throws Exception {
+	public Result<String> addChatdialog(String userId, String friendId, String newChat) throws Exception {
 		Chatdialog chatdialog = new Chatdialog();
 		chatdialog.setId(UUIDUtil.UUID32());
 		chatdialog.setNewchat(newChat);
@@ -144,14 +146,14 @@ public class ChatServiceImpl implements ChatService {
 			List<Chatdialog> chatdialogs = (ArrayList<Chatdialog>) redisUtil.get("chatdialig_list_userid_" + userId);
 			chatdialogs.add(chatdialog);
 			redisUtil.set("chatdialig_list_userid_" + userId, chatdialogs);
-			return true;
+			return Result.ok();
 		} else {
-			return false;
+			return Result.failure(200,"操作失败");
 		}
 	}
 
 	@Override
-	public boolean addNewChat(String chatdialogId, String newChat, String userId) throws Exception {
+	public Result<String> addNewChat(String chatdialogId, String newChat, String userId) throws Exception {
 		Chatdialog chatdialog = new Chatdialog();
 		chatdialog.setId(chatdialogId);
 		chatdialog.setNewchat(newChat);
@@ -166,13 +168,16 @@ public class ChatServiceImpl implements ChatService {
 				}
 			}
 			redisUtil.set("chatdialig_list_userid_" + userId, chatdialogs);
-			return true;
+			return Result.ok();
 		}
-		return false;
+		return Result.failure(200,"操作失败");
 	}
 
 	@Override
-	public List<Object> chatIndex(String friendId, String userId) throws Exception {
+	public Result<List<Object>> chatIndex(String friendId, String userId) throws Exception {
+		if(StringUtils.isEmpty(friendId)){
+			Result.failure(100,"操作失败");
+		}
 		List<Object> data = new ArrayList<>();
 		List<ChatRecord> chatRecords = new ArrayList<>();
 		chatRecords = (List<ChatRecord>) (List) redisUtil.lRange("chat_userId_" + userId + "_friendId_" + friendId, 0,
@@ -190,13 +195,13 @@ public class ChatServiceImpl implements ChatService {
 			data.add(chatRecords);
 			data.add(friendUser);
 		}
-		return data;
+		return Result.ok().setData(data);
 	}
 
 	@Override
-	public List<ChatRecord> loadChatrRecords(String friendUserId, String userId, Integer start) throws Exception {
+	public Result<List<ChatRecord>> loadChatrRecords(String friendUserId, String userId, Integer start) throws Exception {
 
-		return chatRecordMapper.selectChatRecordsByUserId(userId, friendUserId, start, 50);
+		return Result.ok().setData(chatRecordMapper.selectChatRecordsByUserId(userId, friendUserId, start, 50));
 	}
 
 	@Override
