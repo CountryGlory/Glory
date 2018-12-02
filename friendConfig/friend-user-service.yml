@@ -70,4 +70,4 @@ logging:
         web: info
 mybatis:
   mapper-locations: classpath:mapping/*.xml
-  type-aliases-package: com.rong.friend.model
+  type-aliases-package: com.rong.friend.common.model
