@@ -47,7 +47,7 @@ logging:
 ###feign 默认关闭熔断，请看HystrixFeignConfiguration
 feign:
   hystrix:
-    enabled: true
+    enabled: false
 hystrix:
   command:
     default:
