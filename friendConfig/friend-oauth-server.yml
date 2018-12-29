@@ -50,9 +50,9 @@ logging:
       springframework:
         web: info
 ###feign 默认关闭熔断，请看HystrixFeignConfiguration
-feign:
-  hystrix:
-    enabled: true
+#feign:
+#  hystrix:
+#    enabled: true
 hystrix:
   command:
     default:
