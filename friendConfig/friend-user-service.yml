@@ -70,6 +70,8 @@ feign:
     enabled: false
   okhttp:
     enabled: true
+  hystrix:
+    enabled: true
 logging:
   config: classpath:logback.xml
   level:
