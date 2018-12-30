@@ -1,4 +1,4 @@
-package com.rong.friend.model;
+package com.rong.friend.oauthserver.common.model;
 
 import java.io.Serializable;
 import java.util.Date;

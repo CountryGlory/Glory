@@ -1,4 +1,4 @@
-package com.rong.friend.oauthserver.config;
+package com.rong.friend.config;
 
 import javax.servlet.http.HttpServletResponse;
 

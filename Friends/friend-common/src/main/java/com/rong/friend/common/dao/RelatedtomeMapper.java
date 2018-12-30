@@ -1,6 +1,6 @@
-package com.rong.friend.dao;
+package com.rong.friend.oauthserver.common.dao;
 
-import com.rong.friend.model.Relatedtome;
+import com.rong.friend.oauthserver.common.model.Relatedtome;
 
 public interface RelatedtomeMapper {
     int deleteByPrimaryKey(String id);

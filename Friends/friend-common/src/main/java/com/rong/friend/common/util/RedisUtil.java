@@ -1,4 +1,4 @@
-package com.rong.friend.util;
+package com.rong.friend.oauthserver.common.util;
 
 import java.io.Serializable;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.rong.friend.oauthserver;
+package com.rong.friend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

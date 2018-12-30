@@ -1,12 +1,8 @@
-package com.rong.friend.filter;
+package com.rong.friend.oauthserver.filter;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -48,7 +44,8 @@ public class MyFilter extends ZuulFilter {
 		HttpServletRequest request = ctx.getRequest();
 		if (request.getRequestURI().equals("/api-user/v2/api-docs")
 				|| request.getRequestURI().equals("/api-chat/v2/api-docs")
-				|| request.getRequestURI().equals("/api-user/login")) {
+				|| request.getRequestURI().equals("/uaa/v2/api-docs")
+				|| request.getRequestURI().equals("/uaa/login")) {
 			return false;
 		} else {
 			return true;
@@ -69,7 +66,7 @@ public class MyFilter extends ZuulFilter {
 		String accessTokenHead = request.getHeader("token");
 		String accessTokenParam=request.getParameter("token");
 
-		if(StringUtils.isEmpty(accessTokenHead)&& StringUtils.isEmpty(accessTokenParam==null)){
+		if(StringUtils.isEmpty(accessTokenHead)&& StringUtils.isEmpty(accessTokenParam)){
 			log.warn("Authorization token is empty");
 			ctx.setSendZuulResponse(false);
 			ctx.setResponseStatusCode(401);

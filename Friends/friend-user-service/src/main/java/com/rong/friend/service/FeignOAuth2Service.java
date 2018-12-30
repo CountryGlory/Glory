@@ -1,4 +1,13 @@
-package com.rong.friend.service;
+package com.rong.friend.oauthserver.service;
 
-public class FeignOAuth2Service {
+import com.rong.friend.oauthserver.common.feign.FeignOauth2RequestInterceptor;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@FeignClient(name = "friend-oauth-server", configuration = FeignOauth2RequestInterceptor.class)
+public interface FeignOAuth2Service {
+
+    @RequestMapping("/getUserid")
+    String getUserid();
 }

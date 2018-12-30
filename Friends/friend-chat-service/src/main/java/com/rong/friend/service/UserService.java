@@ -1,8 +1,6 @@
-package com.rong.friend.service;
+package com.rong.friend.oauthserver.service;
 
-import java.security.Principal;
-
-import com.rong.friend.common.feign.FeignOauth2RequestInterceptor;
+import com.rong.friend.oauthserver.common.feign.FeignOauth2RequestInterceptor;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,8 +1,7 @@
-package com.rong.friend.model;
+package com.rong.friend.oauthserver.common.model;
 
 // import com.fasterxml.jackson.annotation.JsonIgnore;
 // import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;

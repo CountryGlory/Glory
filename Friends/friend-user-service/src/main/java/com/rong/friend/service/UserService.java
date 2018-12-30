@@ -1,8 +1,7 @@
-package com.rong.friend.service;
+package com.rong.friend.oauthserver.service;
 
-import com.rong.friend.entity.UserModel;
-import com.rong.friend.model.Result;
-import com.rong.friend.model.User;
+import com.rong.friend.oauthserver.common.model.Result;
+import com.rong.friend.oauthserver.common.model.User;
 
 /**
  * 用户
@@ -19,17 +18,6 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	public User login(String nameNumber, String password) throws Exception;
-
-	/**
-	 * 自动登录
-	 * 
-	 * @param nameNumber
-	 * @param password
-	 * @param status
-	 * @return
-	 * @throws Exception
-	 */
-	public String zjlogin(String nameNumber, String sessionId) throws Exception;
 
 	/**
 	 * 注册
@@ -100,15 +88,5 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	public boolean verificationEmail(String emial) throws Exception;
-
-	/**
-	 * 验证sessionID
-	 * 
-	 * @param sessionId
-	 * @param userNumber
-	 * @return
-	 * @throws Exception
-	 */
-	public Integer verificationSession(String sessionId, String userNumber) throws Exception;
 
 }

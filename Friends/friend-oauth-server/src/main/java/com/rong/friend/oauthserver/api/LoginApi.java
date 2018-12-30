@@ -1,11 +1,11 @@
-package com.rong.friend.oauthserver.controller;
+package com.rong.friend.api;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import com.rong.friend.model.Result;
+import com.rong.friend.common.model.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +30,9 @@ import io.swagger.annotations.ApiParam;
 
 @Api(description = "登录接口")
 @RestController
-public class LoginController {
+public class LoginApi {
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoginApi.class);
     @Autowired
     private TokenEndpoint tokenEndpoint;
     @Autowired
@@ -59,10 +59,10 @@ public class LoginController {
             return Result.ok().setData(responseEntity.getBody());
         } catch (InvalidGrantException e) {
             logger.error("login error 用户名密码不正确 ......");
-            return Result.failure(100, "用户名密码不正确");
+            return Result.failure(500, "用户名密码不正确");
         } catch (Exception e) {
             logger.error("login error ......", e);
-            return Result.failure(100, e.getMessage());
+            return Result.failure(500, e.getMessage());
         }
     }
 
@@ -76,7 +76,7 @@ public class LoginController {
             return Result.ok("退出登入成功");
         } catch (Exception e) {
             logger.error("logout error ....", e);
-            return Result.failure(100, e.getMessage());
+            return Result.failure(500, e.getMessage());
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.rong.friend.config;
+package com.rong.friend.oauthserver.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

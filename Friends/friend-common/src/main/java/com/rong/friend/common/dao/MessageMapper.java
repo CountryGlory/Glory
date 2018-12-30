@@ -1,6 +1,6 @@
-package com.rong.friend.dao;
+package com.rong.friend.oauthserver.common.dao;
 
-import com.rong.friend.model.Message;
+import com.rong.friend.oauthserver.common.model.Message;
 
 public interface MessageMapper {
     int deleteByPrimaryKey(String id);

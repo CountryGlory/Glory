@@ -1,4 +1,4 @@
-package com.rong.friend.oauthserver;
+package com.rong.friend;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

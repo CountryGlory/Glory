@@ -1,8 +1,8 @@
-package com.rong.friend.oauthserver.service.impl;
+package com.rong.friend.service.impl;
 
-import com.rong.friend.model.Result;
-import com.rong.friend.model.User;
-import com.rong.friend.oauthserver.service.UserService;
+import com.rong.friend.service.UserService;
+import com.rong.friend.common.model.Result;
+import com.rong.friend.common.model.User;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Result<User> findByUsername(String username) {
         logger.info("调用{}失败", "friendByUsername");
-        return Result.failure(100, "调用friendByUsername接口失败");
+        return Result.failure(500, "调用friendByUsername接口失败");
     }
 
 }

@@ -1,6 +1,6 @@
-package com.rong.friend.dao;
+package com.rong.friend.oauthserver.common.dao;
 
-import com.rong.friend.model.Comment;
+import com.rong.friend.oauthserver.common.model.Comment;
 
 public interface CommentMapper {
     int deleteByPrimaryKey(String id);

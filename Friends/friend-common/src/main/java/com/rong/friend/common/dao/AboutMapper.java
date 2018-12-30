@@ -1,6 +1,6 @@
-package com.rong.friend.dao;
+package com.rong.friend.oauthserver.common.dao;
 
-import com.rong.friend.model.About;
+import com.rong.friend.oauthserver.common.model.About;
 
 public interface AboutMapper {
     int insert(About record);

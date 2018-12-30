@@ -1,4 +1,4 @@
-package com.rong.friend.service.impl;
+package com.rong.friend.oauthserver.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,24 +8,24 @@ import java.util.Map;
 
 import javax.websocket.Session;
 
-import com.rong.friend.model.Result;
+import com.rong.friend.oauthserver.common.util.RedisUtil;
+import com.rong.friend.oauthserver.common.util.UUIDUtil;
+import com.rong.friend.oauthserver.common.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
-import com.rong.friend.dao.ChatRecordMapper;
-import com.rong.friend.dao.ChatdialogMapper;
-import com.rong.friend.dao.FriendapplyMapper;
-import com.rong.friend.dao.FriendsMapper;
-import com.rong.friend.dao.RelatedtomeMapper;
-import com.rong.friend.dao.UserMapper;
-import com.rong.friend.model.ChatRecord;
-import com.rong.friend.model.Chatdialog;
-import com.rong.friend.model.User;
-import com.rong.friend.service.ChatService;
-import com.rong.friend.util.RedisUtil;
-import com.rong.friend.util.UUIDUtil;
+import com.rong.friend.oauthserver.common.dao.ChatRecordMapper;
+import com.rong.friend.oauthserver.common.dao.ChatdialogMapper;
+import com.rong.friend.oauthserver.common.dao.FriendapplyMapper;
+import com.rong.friend.oauthserver.common.dao.FriendsMapper;
+import com.rong.friend.oauthserver.common.dao.RelatedtomeMapper;
+import com.rong.friend.oauthserver.common.dao.UserMapper;
+import com.rong.friend.oauthserver.common.model.ChatRecord;
+import com.rong.friend.oauthserver.common.model.Chatdialog;
+import com.rong.friend.oauthserver.common.model.User;
+import com.rong.friend.oauthserver.service.ChatService;
 import org.springframework.util.StringUtils;
 
 /**
@@ -92,7 +92,7 @@ public class ChatServiceImpl implements ChatService {
 			}
 			return Result.ok();
 		} else {
-			return Result.failure(200,"操作失败");
+			return Result.failure(500,"操作失败");
 		}
 	}
 
@@ -105,7 +105,7 @@ public class ChatServiceImpl implements ChatService {
 		if (data > 0) {
 			return Result.ok();
 		} else {
-			return Result.failure(200,"操作失败");
+			return Result.failure(500,"操作失败");
 		}
 	}
 
@@ -117,7 +117,7 @@ public class ChatServiceImpl implements ChatService {
 		if (data > 0) {
 			return Result.ok();
 		} else {
-			return Result.failure(200,"操作失败");
+			return Result.failure(500,"操作失败");
 		}
 	}
 
@@ -127,7 +127,7 @@ public class ChatServiceImpl implements ChatService {
 		if (data > 0) {
 			return Result.ok();
 		} else {
-			return Result.failure(200,"操作失败");
+			return Result.failure(500,"操作失败");
 		}
 	}
 
@@ -148,7 +148,7 @@ public class ChatServiceImpl implements ChatService {
 			redisUtil.set("chatdialig_list_userid_" + userId, chatdialogs);
 			return Result.ok();
 		} else {
-			return Result.failure(200,"操作失败");
+			return Result.failure(500,"操作失败");
 		}
 	}
 
@@ -170,13 +170,13 @@ public class ChatServiceImpl implements ChatService {
 			redisUtil.set("chatdialig_list_userid_" + userId, chatdialogs);
 			return Result.ok();
 		}
-		return Result.failure(200,"操作失败");
+		return Result.failure(500,"操作失败");
 	}
 
 	@Override
 	public Result<List<Object>> chatIndex(String friendId, String userId) throws Exception {
 		if(StringUtils.isEmpty(friendId)){
-			Result.failure(100,"操作失败");
+			Result.failure(500,"操作失败");
 		}
 		List<Object> data = new ArrayList<>();
 		List<ChatRecord> chatRecords = new ArrayList<>();

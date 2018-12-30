@@ -1,4 +1,4 @@
-package com.rong.friend.listener;
+package com.rong.friend.oauthserver.listener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

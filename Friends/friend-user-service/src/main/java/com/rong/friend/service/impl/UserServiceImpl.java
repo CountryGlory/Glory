@@ -1,23 +1,16 @@
-package com.rong.friend.service.impl;
+package com.rong.friend.oauthserver.service.impl;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
-import java.util.UUID;
 
+import com.rong.friend.oauthserver.common.dao.UserMapper;
+import com.rong.friend.oauthserver.common.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.rong.friend.dao.UserMapper;
-import com.rong.friend.entity.UserModel;
-import com.rong.friend.model.Result;
-import com.rong.friend.model.User;
-import com.rong.friend.service.UserService;
-import com.rong.friend.util.MD5Util;
-import com.rong.friend.util.SessionUtil;
-import com.rong.friend.util.UUIDUtil;
+import com.rong.friend.oauthserver.common.model.Result;
+import com.rong.friend.oauthserver.common.model.User;
+import com.rong.friend.oauthserver.service.UserService;
 
 @Service
 @Transactional
@@ -46,21 +39,6 @@ public class UserServiceImpl implements UserService {
 		// SessionUtil.setSessionId(userModel.getSessionId(),userModel.getId());
 		return user;
 
-	}
-
-	@Override
-	public String zjlogin(String nameNumber, String sessionId) throws Exception {
-		User user = userMapper.selectBynameNumberLogin(nameNumber);
-		if (user == null || !SessionUtil.provingSession(user.getId(), sessionId)) {
-			return null;
-		} else {
-			user.setStatus(1);
-			userMapper.updateByPrimaryKeySelective(user);
-			SessionUtil.removeSessionId(sessionId);
-			String newSessionId = UUIDUtil.UUID64();
-			SessionUtil.setSessionId(newSessionId, user.getId());
-			return newSessionId;
-		}
 	}
 
 	@Override
@@ -141,16 +119,6 @@ public class UserServiceImpl implements UserService {
 		} else {
 			return true;
 		}
-	}
-
-	@Override
-	public Integer verificationSession(String sessionId, String userNumber) throws Exception {
-		User user = userMapper.selectBynameNumberLogin(userNumber);
-		String userId = SessionUtil.getSessionId(sessionId);
-		if (userId.equals(user.getId())) {
-			return 1;
-		}
-		return 0;
 	}
 
 }

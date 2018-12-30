@@ -1,6 +1,6 @@
-package com.rong.friend.oauthserver.config;
+package com.rong.friend.config;
 
-import com.rong.friend.oauthserver.service.impl.UserDetailsServiceImpl;
+import com.rong.friend.service.impl.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

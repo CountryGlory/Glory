@@ -1,6 +1,6 @@
-package com.rong.friend.dao;
+package com.rong.friend.oauthserver.common.dao;
 
-import com.rong.friend.model.Setting;
+import com.rong.friend.oauthserver.common.model.Setting;
 
 public interface SettingMapper {
     int deleteByPrimaryKey(String id);

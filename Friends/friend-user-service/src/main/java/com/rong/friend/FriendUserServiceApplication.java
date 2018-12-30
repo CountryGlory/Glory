@@ -1,5 +1,5 @@
 
-package com.rong.friend;
+package com.rong.friend.oauthserver;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients(basePackages = "com.rong.friend")
-@MapperScan("com.rong.friend.dao")
+@MapperScan("com.rong.friend.common.dao")
 @EnableTransactionManagement
 public class FriendUserServiceApplication {
 

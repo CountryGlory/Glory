@@ -1,4 +1,4 @@
-package com.rong.friend.friendeurekaserver;
+package com.rong.friend.oauthserver.friendeurekaserver;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.rong.friend.swagger;
+package com.rong.friend.oauthserver.swagger;
 
 import java.util.ArrayList;
 import java.util.List;

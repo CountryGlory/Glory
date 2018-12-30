@@ -1,4 +1,4 @@
-package com.rong.friend.common.util;
+package com.rong.friend.oauthserver.common.util;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationServiceException;

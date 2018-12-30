@@ -1,6 +1,6 @@
-package com.rong.friend.dao;
+package com.rong.friend.oauthserver.common.dao;
 
-import com.rong.friend.model.Fabulous;
+import com.rong.friend.oauthserver.common.model.Fabulous;
 
 public interface FabulousMapper {
     int deleteByPrimaryKey(String id);

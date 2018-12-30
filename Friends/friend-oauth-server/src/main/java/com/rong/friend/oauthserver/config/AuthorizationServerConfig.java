@@ -1,5 +1,6 @@
-package com.rong.friend.oauthserver.config;
+package com.rong.friend.config;
 
+import com.rong.friend.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,6 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 
 // import javax.sql.DataSource;
 
-import com.rong.friend.oauthserver.service.impl.UserDetailsServiceImpl;
 
 /**
  * Created by Mr.Yangxiufeng on 2017/12/28. Time:11:02

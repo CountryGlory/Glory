@@ -1,7 +1,5 @@
-package com.rong.friend.service.impl;
+package com.rong.friend.oauthserver.service.impl;
 
-import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 
 import javax.websocket.OnClose;
@@ -10,18 +8,13 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import com.rong.friend.oauthserver.common.util.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.fastjson.JSON;
-import com.rong.friend.dao.ChatRecordMapper;
-import com.rong.friend.dao.ChatdialogMapper;
-import com.rong.friend.model.ChatRecord;
-import com.rong.friend.service.ChatService;
-import com.rong.friend.util.RedisUtil;
-import com.rong.friend.util.UUIDUtil;
+import com.rong.friend.oauthserver.service.ChatService;
 
 @Component
 @ServerEndpoint("/websocket")

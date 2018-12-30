@@ -1,8 +1,8 @@
-package com.rong.friend.dao;
+package com.rong.friend.oauthserver.common.dao;
 
 import java.util.List;
 
-import com.rong.friend.model.Chatdialog;
+import com.rong.friend.oauthserver.common.model.Chatdialog;
 
 public interface ChatdialogMapper {
     int deleteByPrimaryKey(String id);

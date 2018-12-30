@@ -1,6 +1,6 @@
-package com.rong.friend.dao;
+package com.rong.friend.oauthserver.common.dao;
 
-import com.rong.friend.model.Look;
+import com.rong.friend.oauthserver.common.model.Look;
 
 public interface LookMapper {
     int deleteByPrimaryKey(String id);

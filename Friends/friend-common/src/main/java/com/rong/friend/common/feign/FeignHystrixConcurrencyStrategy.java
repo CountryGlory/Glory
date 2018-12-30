@@ -1,4 +1,4 @@
-package com.rong.friend.common.feign;
+package com.rong.friend.oauthserver.common.feign;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;

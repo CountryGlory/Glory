@@ -1,16 +1,11 @@
-package com.rong.friend.service;
+package com.rong.friend.oauthserver.service;
 
 import java.util.List;
 import java.util.Map;
 
-import com.rong.friend.model.Result;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import com.rong.friend.oauthserver.common.model.Result;
 
-import com.rong.friend.dao.ChatdialogMapper;
-import com.rong.friend.model.ChatRecord;
-import com.rong.friend.model.Chatdialog;
+import com.rong.friend.oauthserver.common.model.ChatRecord;
 
 /**
  * 聊天模块业务逻辑接口

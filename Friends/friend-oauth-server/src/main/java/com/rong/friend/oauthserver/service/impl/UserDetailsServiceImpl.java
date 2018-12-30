@@ -1,11 +1,11 @@
-package com.rong.friend.oauthserver.service.impl;
+package com.rong.friend.service.impl;
 
 import java.util.Collection;
 import java.util.HashSet;
 
-import com.rong.friend.model.Result;
-import com.rong.friend.model.User;
-import com.rong.friend.oauthserver.service.UserService;
+import com.rong.friend.service.UserService;
+import com.rong.friend.common.model.Result;
+import com.rong.friend.common.model.User;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Result<User> result = userService.findByUsername(username);
-        if (result.getCode() == 100) {
+        Result<User> result = null;
+        try {
+            result = (Result<User>) userService.findByUsername(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (result.getCode() != 200) {
             throw new UsernameNotFoundException("用户：" + username + "不存在！");
         }
         User userVo = new User();
