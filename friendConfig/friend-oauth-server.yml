@@ -27,13 +27,16 @@ eureka:
   client:
       service-url:
         defaultZone: http://peer1:8761/eureka/ #,http://peer2:8762/eureka/
+###actuator监控点 start####
 endpoints:
   health:
     sensitive: false
     enabled: true
+##默认情况下很多端点是不允许访问的
 management:
   security:
     enabled: false
+###actuator监控点 end####
 security:
   oauth2:
     resource:

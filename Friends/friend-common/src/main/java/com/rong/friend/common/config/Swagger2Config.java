@@ -16,18 +16,20 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+
+
 /**
- * 
+
  * Created with IntelliJ IDEA.
- * 
+
  * Description:
- * 
+
  * User: Mr.Yangxiufeng
- * 
+
  * Date: 2018-04-18
- * 
+
  * Time: 14:55
- * 
+
  */
 
 @Configuration
@@ -44,6 +46,8 @@ public class Swagger2Config {
 
     }
 
+
+
     private ApiInfo apiInfo() {
 
         return new ApiInfoBuilder()
@@ -54,7 +58,7 @@ public class Swagger2Config {
 
                 .termsOfServiceUrl("")
 
-                .contact(new Contact("包国荣", "2956712650@qq.com", "2956712650@qq.com"))
+                .contact(new Contact("包国荣","2956712650@qq.com","2956712650@qq.com"))
 
                 .version("1.0")
 
