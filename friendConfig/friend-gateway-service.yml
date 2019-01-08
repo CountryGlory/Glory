@@ -31,10 +31,12 @@ spring:
           predicates:
             - Path=/user-api/**
           filters:
+            - SwaggerHeaderFilter
             - StripPrefix=1
         - id: chat-api
           uri: lb://friend-chat-service
           predicates:
+            - SwaggerHeaderFilter
             - Path=/chat-api/**
           filters:
             - StripPrefix=1
@@ -43,4 +45,5 @@ spring:
           predicates:
             - Path=/oauth-api/**
           filters:
+            - SwaggerHeaderFilter
             - StripPrefix=1
