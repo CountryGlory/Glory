@@ -1,4 +1,4 @@
-package com.rong.friend.oauthserver.service.impl;
+package com.rong.friend.service.impl;
 
 import java.util.HashMap;
 
@@ -8,13 +8,13 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import com.rong.friend.oauthserver.common.util.RedisUtil;
+import com.rong.friend.common.util.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.rong.friend.oauthserver.service.ChatService;
+import com.rong.friend.service.ChatService;
 
 @Component
 @ServerEndpoint("/websocket")
