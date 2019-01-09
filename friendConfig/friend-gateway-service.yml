@@ -1,3 +1,4 @@
+hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
 eureka:
   client:
     service-url:
@@ -33,12 +34,21 @@ spring:
         filters:
         - SwaggerHeaderFilter
         - StripPrefix=1
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallback
       - id: chat-api
         uri: lb://friend-chat-service
         predicates:
         - Path=/chat-api/**
         filters:
+        - SwaggerHeaderFilter
         - StripPrefix=1
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallback
       - id: oauth-api
         uri: lb://friend-oauth-server
         predicates:
@@ -46,22 +56,22 @@ spring:
         filters:
         - SwaggerHeaderFilter
         - StripPrefix=1
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallback
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:9060/oauth/token
+      user-authorization-uri: http://localhost:9060/oauth/authorize
+      client-id: friend-gateway-service
+    resource:
+      user-info-uri: http://localhost:9060/user
+      prefer-token-info: false
 logging:
   config: classpath:logback.xml
   level:
     org:
       springframework:
         web: info
-hystrix:
-  command:
-    default:
-      execution:
-        timeout:
-          enabled: true
-        isolation:
-          thread:
-            timeoutInMilliseconds: 10000
-ribbon:
-  ReadTimeout: 10000
-  ConnectTimeout: 10000
-  SocketTimeout: 10000
