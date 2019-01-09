@@ -27,7 +27,7 @@ spring:
         locator:
           enabled: true
       default-filters:
-        - WebSocket=true
+        - WebSocket=false
       routes:
       - id: user-api
         uri: lb://friend-user-service
@@ -67,7 +67,8 @@ spring:
         predicates:
         - Path=/chat-api/websocket/**
         filters:
-        - StripPrefix=2
+        - StripPrefix=1
+        - WebSocketFilter
         - AddResponseHeader=X-Response-Default-Foo, Default-Bar
 
 logging:
