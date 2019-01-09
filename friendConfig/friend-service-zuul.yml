@@ -42,13 +42,13 @@ zuul:
   #ignored-headers: Access-Control-Allow-Origin,H-APP-Id,Token,APPToken
   routes:
     api-a:
-      path: /api-user/**
+      path: /user-api/**
       serviceId: friend-user-service
     api-b:
-      path: /api-chat/**
+      path: /chat-api/**
       serviceId: friend-chat-service
-    uaa:
-      path: /uaa/**
+    oauth:
+      path: /oauth-api/**
       strip-prefix: true
       sensitiveHeaders:
       serviceId: friend-oauth-server

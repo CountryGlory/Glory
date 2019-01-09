@@ -60,7 +60,7 @@ security:
   oauth2:
     resource:
       id: resource
-      user-info-uri: http://localhost:8781/uaa/user
+      user-info-uri: http://localhost:8781/oauth-api/user
       prefer-token-info: false
 feign:
   httpclient:
