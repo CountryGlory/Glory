@@ -67,7 +67,7 @@ spring:
         predicates:
         - Path=/chat-api/websocket/**
         filters:
-        - StripPrefix=1
+        - StripPrefix=2
         - AddResponseHeader=X-Response-Default-Foo, Default-Bar
 
 logging:
