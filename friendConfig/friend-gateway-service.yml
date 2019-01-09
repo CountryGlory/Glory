@@ -26,6 +26,8 @@ spring:
       discovery:
         locator:
           enabled: true
+      default-filters:
+        - Elapsed=true
       routes:
       - id: user-api
         uri: lb://friend-user-service

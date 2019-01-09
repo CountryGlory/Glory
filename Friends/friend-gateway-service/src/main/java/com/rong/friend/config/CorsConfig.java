@@ -1,11 +1,16 @@
 package com.rong.friend.config;
 
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.gateway.discovery.DiscoveryClientRouteDefinitionLocator;
+import org.springframework.cloud.gateway.discovery.DiscoveryLocatorProperties;
+import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.codec.ServerCodecConfigurer;
+import org.springframework.http.codec.support.DefaultServerCodecConfigurer;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.cors.reactive.CorsUtils;
@@ -22,7 +27,7 @@ import reactor.core.publisher.Mono;
 @Configuration
 public class RouteConfiguration {
     //这里为支持的请求头，如果有自定义的header字段请自己添加（不知道为什么不能使用*）
-    private static final String ALLOWED_HEADERS = "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN,token,username,client";
+    private static final String ALLOWED_HEADERS = "*";
     private static final String ALLOWED_METHODS = "*";
     private static final String ALLOWED_ORIGIN = "*";
     private static final String ALLOWED_Expose = "*";
@@ -49,12 +54,18 @@ public class RouteConfiguration {
             return chain.filter(ctx);
         };
     }
+    @Bean
+    public ServerCodecConfigurer serverCodecConfigurer() {
+        return new DefaultServerCodecConfigurer();
+    }
+
     /**
      *
      *如果使用了注册中心（如：Eureka），进行控制则需要增加如下配置
      */
-//    @Bean
-//    public RouteDefinitionLocator discoveryClientRouteDefinitionLocator(DiscoveryClient discoveryClient) {
-//        return new DiscoveryClientRouteDefinitionLocator(discoveryClient);
-//    }
+    @Bean
+    public RouteDefinitionLocator discoveryClientRouteDefinitionLocator(DiscoveryClient discoveryClient,
+                                                                        DiscoveryLocatorProperties properties) {
+        return new DiscoveryClientRouteDefinitionLocator(discoveryClient, properties);
+    }
 }
