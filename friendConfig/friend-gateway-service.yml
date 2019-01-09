@@ -26,8 +26,6 @@ spring:
       discovery:
         locator:
           enabled: true
-      default-filters:
-        - WebSocket=false
       routes:
       - id: user-api
         uri: lb://friend-user-service
