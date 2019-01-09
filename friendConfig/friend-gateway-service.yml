@@ -67,7 +67,7 @@ spring:
         filters:
         - StripPrefix=1
         - WebSocketGlobalFilter
-        - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+#        - AddResponseHeader=X-Response-Default-Foo, Default-Bar
 
 logging:
   config: classpath:logback.xml
