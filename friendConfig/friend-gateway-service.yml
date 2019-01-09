@@ -60,15 +60,7 @@ spring:
           args:
             name: fallbackcmd
             fallbackUri: forward:/fallback
-security:
-  oauth2:
-    client:
-      access-token-uri: http://localhost:9060/oauth/token
-      user-authorization-uri: http://localhost:9060/oauth/authorize
-      client-id: friend-gateway-service
-    resource:
-      user-info-uri: http://localhost:9060/user
-      prefer-token-info: false
+
 logging:
   config: classpath:logback.xml
   level:
