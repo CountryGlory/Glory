@@ -27,7 +27,7 @@ spring:
         locator:
           enabled: true
       default-filters:
-        - Elapsed=true
+        - WebSocket=true
       routes:
       - id: user-api
         uri: lb://friend-user-service
