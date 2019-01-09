@@ -60,6 +60,13 @@ spring:
           args:
             name: fallbackcmd
             fallbackUri: forward:/fallback
+      - id: websocket
+        uri:lb:ws://chat-api/websocket/**
+        predicates:
+        - Path=/chat-api/websocket/**
+        filters:
+        - WebSocketFilter
+        - StripPrefix=1
 
 logging:
   config: classpath:logback.xml
