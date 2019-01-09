@@ -26,24 +26,23 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: user-api
-          uri: lb://friend-user-service
-          predicates:
-            - Path=/user-api/**
-          filters:
-            - SwaggerHeaderFilter
-            - StripPrefix=1
-        - id: chat-api
-          uri: lb://friend-chat-service
-          predicates:
-            - SwaggerHeaderFilter
-            - Path=/chat-api/**
-          filters:
-            - StripPrefix=1
-        - id: oauth-api
-          uri: lb://friend-oauth-server
-          predicates:
-            - Path=/oauth-api/**
-          filters:
-            - SwaggerHeaderFilter
-            - StripPrefix=1
+      - id: user-api
+        uri: lb://friend-user-service
+        predicates:
+        - Path=/user-api/**
+        filters:
+        - SwaggerHeaderFilter
+        - StripPrefix=1
+      - id: chat-api
+        uri: lb://friend-chat-service
+        predicates:
+        - Path=/chat-api/**
+        filters:
+        - StripPrefix=1
+      - id: oauth-api
+        uri: lb://friend-oauth-server
+        predicates:
+        - Path=/oauth-api/**
+        filters:
+        - SwaggerHeaderFilter
+        - StripPrefix=1
