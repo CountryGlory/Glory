@@ -1,4 +1,4 @@
-hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
+hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 500000
 eureka:
   client:
     service-url:
